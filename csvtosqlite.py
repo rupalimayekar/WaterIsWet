@@ -22,21 +22,13 @@ class Data(Base):
     #tell SQLAlchemy the name of column and its attributes:
     id = Column(Integer, primary_key=True, nullable=False) 
     Area_id = Column(VARCHAR)
-    Year = Column(INT)
-    _4114 = Column(DECIMAL)
-    _4115 = Column(DECIMAL)
-    _4116 = Column(DECIMAL)
-    _4150 = Column(DECIMAL)
-    _4151 = Column(DECIMAL)
-    _4400 = Column(DECIMAL)
-    _4401 = Column(DECIMAL)
-    _4403 = Column(DECIMAL)
-    _4445 = Column(DECIMAL)
-    _4472 = Column(DECIMAL)
-    _4543 = Column(DECIMAL)
+    Year = Column(Integer)
+    _4114 = Column(Float)
+
 
 engine = create_engine('sqlite:///data.sqlite')
 Base.metadata.create_all(engine)
-file_name = 'data/aquastat_environment.csv'
+file_name = 'data/test.csv'
 df = pd.read_csv(file_name)
 df.to_sql(con=engine, index_label='id', name=Data.__tablename__, if_exists='replace')
+
