@@ -47,8 +47,7 @@ engine = create_engine('sqlite:///../data/data.sqlite')
 Base.metadata.create_all(engine)
 df_data = pd.read_csv('../data/test.csv')
 df_code = pd.read_csv('../data/countries.csv')
-
-
+df=df_data.merge(df_code, left_on='country', right_on='cn_name', how='left')
 df.to_sql(con=engine, index_label='id', name=Data.__tablename__, if_exists='replace')
 
 	
