@@ -22,7 +22,7 @@ class Data(Base):
     #tell SQLAlchemy the name of column and its attributes:
     id = Column(Integer, primary_key=True, nullable=False) 
     country = Column(VARCHAR)
-    area_id = Column(Integer)
+    code = Column(Integer)
     year = Column(Integer)
     area = Column(Float)
     perc_cultivated = Column(Float)
@@ -42,9 +42,13 @@ class Data(Base):
 	perc_safe_water = Column(Float)
 
 
+
 engine = create_engine('sqlite:///../data/data.sqlite')
 Base.metadata.create_all(engine)
-file_name = '../data/test.csv'
-df = pd.read_csv(file_name)
+df_data = pd.read_csv('../data/test.csv')
+df_code = pd.read_csv('../data/countries.csv')
+
+
 df.to_sql(con=engine, index_label='id', name=Data.__tablename__, if_exists='replace')
 
+	
