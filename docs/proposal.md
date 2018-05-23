@@ -39,13 +39,13 @@ We propose to answer the following questions for this project. The ability to an
     * Do countries with a higher Water Stress Indicator have a lower HDI?
     * Do countries with a higher Flood Occurrence Indicator have a lower HDI?
 
-5. How is the GDP of a country related to its water resources?
+6. How is the GDP of a country related to its water resources?
     * Do countries with a higher NRI have a higher GDP?
     * Do countries with a lower Dependency Ration have a higher GDP?
     * Do countries with a higher Water Stress Indicator have a lower GDP?
     * Do countries with a higher Flood Occurrence Indicator have a lower GDP?
 
-6. How is the Prevelance of undernourishment related to the water resources for a country?
+7. How is the Prevelance of undernourishment related to the water resources for a country?
     * Do countries with a lower NRI have higher Prevelance of undernourishment?
     * Do countries with a higher Dependency Ratio have higher Prevelance of undernourishment?
     * Do countries with a higher Water Stress Indicator have a higher Prevelance of undernourishment?
