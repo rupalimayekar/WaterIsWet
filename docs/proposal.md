@@ -58,7 +58,7 @@ We propose to answer the following questions for this project. The ability to an
 
 ## Technical Considerations
 
-The project would result in a Flask powered website that will show the analysis on various web pages/popups on that site. The Website will be developed using HTML/CSS and Javascript libraries. The website will use the Bootstrap framework to be responsive.
+The project would result in a Flask powered website that will show the analysis on various web pages/popups on that site. The Website will be developed using HTML/CSS and Javascript libraries. The website will use the Bootstrap framework to be responsive. We will use the [Highcharts javascript library](https://www.highcharts.com) for our visualizations.
 
 We will use a SQLite database to store and retrieve all the required data for the project. 
 

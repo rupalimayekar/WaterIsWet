@@ -17,15 +17,14 @@ Base = declarative_base()
 
 class Data(Base):
     #Tell SQLAlchemy what the table name is and if there's any table-specific arguments it should know about
-    __tablename__ = 'Data'
-    __table_args__ = {'sqlite_autoincrement': True}
+	__tablename__ = 'Data'
+	__table_args__ = {'sqlite_autoincrement': True}
     #tell SQLAlchemy the name of column and its attributes:
-    id = Column(Integer, primary_key=True, nullable=False) 
-    country = Column(VARCHAR)
-    code = Column(Integer)
-    year = Column(Integer)
-    area = Column(Float)
-    perc_cultivated = Column(Float)
+	id = Column(Integer, primary_key=True, nullable=False) 
+	country = Column(VARCHAR)
+	year = Column(Integer)
+	area = Column(Float)
+	perc_cultivated = Column(Float)
 	total_pop = Column(Float)
 	rural_pop = Column(Float)
 	urban_pop = Column(Float)
@@ -40,15 +39,18 @@ class Data(Base):
 	water_stress = Column(Float)
 	flood = Column(Float)
 	perc_safe_water = Column(Float)
+	code = Column(Integer)
+	cn_name = Column(VARCHAR)
+
+
 
 
 
 engine = create_engine('sqlite:///../data/data.sqlite')
 Base.metadata.create_all(engine)
-df_data = pd.read_csv('../data/test.csv')
+df_data = pd.read_csv('../data/Data_Final.csv')
 df_code = pd.read_csv('../data/countries.csv')
-
-
+df = df_data.merge(df_code, left_on='country', right_on='cn_name', how='left')
 df.to_sql(con=engine, index_label='id', name=Data.__tablename__, if_exists='replace')
 
 	
