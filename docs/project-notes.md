@@ -2,11 +2,11 @@
 
 # Timeline for data
 For the graphs we will use data for the last 20 years and we will use 5 year buckers so as to have 4 buckets in total
-The values will be means/meadians whateve makes sense for the parameter/viz
+The values will be means/meadians whatever makes sense for the parameter/viz
 
 # List of initial visualizations
 
-* Intro Map with dropdown values
+* Intro Map with dropdown values (just suggestions)
     * % total area cultivated
     * population density
     * GDP per capita
@@ -16,8 +16,17 @@ The values will be means/meadians whateve makes sense for the parameter/viz
     * Total Population with access to safe drinking water
 
 # Division of Pages & Assigned person
+* Website design - Jen
 
+* Questions
+    #1-4 - Rupali(/David?)
+    #5-6-7 - Luke
 
+* Summary 
+    #1 - Andrea
+    #2 - Jen (Andrea can help if needed)
+
+* Flask app - Luke/David
 
 # List of data columns to use
 These are the data columns to track
