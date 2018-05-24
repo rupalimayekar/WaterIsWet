@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" language="en-US">
+  {% if title %}
+  <title>{{ title }}</title>
+  {% else %}
+  <title>Population based HDI</title>
+  {% endif %}
+
+  <!-- Bootstrap  CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      
+  <!-- d3 JavaScript -->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+
+  <!-- Highcharts -->
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <!-- <script src="https://code.highcharts.com/modules/exporting.js"></script> -->
+
+
+  <!-- Our CSS -->
+  <!-- <link rel="stylesheet" type="text/css" href="styles/styles.css"> -->
+
+</head>
+
+<body>
+  <h2 class="text-center">Comparing HDI against GDP, GII and Urban Population</h1>
+  <br>
+  <h3 class="text-center">Scatter Plot of HDI against urbanized %</h3>
+  <br><br>
+</body>
+<div id="scatter-container" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto"></div>
+<br><br>
+<div id="hdi_data">{{data}}</div>
+<script src="../static/js/dark-unica-theme.js"></script>
+<script src="../static/js/pop-hdi-gdp-plots.js"></script>
+
+</html>
