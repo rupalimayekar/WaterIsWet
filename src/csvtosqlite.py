@@ -22,7 +22,8 @@ class Data(Base):
     #tell SQLAlchemy the name of column and its attributes:
 	id = Column(Integer, primary_key=True, nullable=False) 
 	country = Column(VARCHAR)
-	year = Column(Integer)
+	mid_year = Column(Integer)
+	year_bucker = Column(VARCHAR)
 	area = Column(Float)
 	perc_cultivated = Column(Float)
 	total_pop = Column(Float)
@@ -46,7 +47,7 @@ class Data(Base):
 
 
 
-engine = create_engine('sqlite:///../data/data.sqlite')
+engine = create_engine('sqlite:///../data/Aquastat.sqlite')
 Base.metadata.create_all(engine)
 df_data = pd.read_csv('../data/Data_Final.csv')
 df_code = pd.read_csv('../data/countries.csv')
