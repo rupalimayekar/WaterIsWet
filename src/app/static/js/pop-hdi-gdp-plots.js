@@ -6,61 +6,114 @@ d3.json('/hdi-gdp-gii-data', function(error, response) {
   if (error) return console.warn(error);
   console.log("RESPONSE", response);
   
-  // data points for the tree years
-  dataPoints2000 = [];
-  dataPoints2010 = [];
-  dataPoints2015 = [];
+  // arrays of data points for the three years for the hdi plot
+  hdiDataPoints2000 = [];
+  hdiDataPoints2010 = [];
+  hdiDataPoints2015 = [];
+  
+  // arrays of data points for the three years for the gii plot
+  giiDataPoints2000 = [];
+  giiDataPoints2010 = [];
+  giiDataPoints2015 = [];
 
+  // Loop through the response and create the js objects for the plots for the 2000 year bucket
   for (var i=0; i<response.year2000.country.length; i++) {
-    //dataPoint = [response.year2000.urbanized[i], response.year2000.hdi[i]];
-    dataPoint = {
+    // hdi plot data
+    hdiDataPoint = {
       x: response.year2000.urbanized[i], 
       y: response.year2000.hdi[i],
       name: response.year2000.country[i]
     }
-    dataPoints2000.push(dataPoint);
+    hdiDataPoints2000.push(hdiDataPoint);
+
+    //GII plot data
+    giiDataPoint = {
+      x: response.year2000.urbanized[i], 
+      y: response.year2000.gii[i],
+      name: response.year2000.country[i]
+    }
+    giiDataPoints2000.push(giiDataPoint);
   };
 
+  // Loop through the response and create the js objects for the plots for the 2010 year bucket
   for (var i=0; i<response.year2010.country.length; i++) {
     // dataPoint = [response.year2010.urbanized[i], response.year2010.hdi[i]];
-    dataPoint = {
+    hdiDataPoint = {
       x: response.year2010.urbanized[i], 
       y: response.year2010.hdi[i],
       name: response.year2010.country[i]
     }
-    dataPoints2010.push(dataPoint);
+    hdiDataPoints2010.push(hdiDataPoint);
+
+    //GII plot data
+    giiDataPoint = {
+      x: response.year2010.urbanized[i], 
+      y: response.year2010.gii[i],
+      name: response.year2010.country[i]
+    }
+    giiDataPoints2010.push(giiDataPoint);
+    
   };
 
+  // Loop through the response and create the js objects for the plots for the 2015 year bucket
   for (var i=0; i<response.year2015.country.length; i++) {
     // dataPoint = [response.year2015.urbanized[i], response.year2015.hdi[i]];
-    dataPoint = {
+    hdiDataPoint = {
       x: response.year2015.urbanized[i], 
       y: response.year2015.hdi[i],
       name: response.year2015.country[i]
     }
-    dataPoints2015.push(dataPoint);
+    hdiDataPoints2015.push(hdiDataPoint);
+  
+    //GII plot data
+    giiDataPoint = {
+      x: response.year2015.urbanized[i], 
+      y: response.year2015.gii[i],
+      name: response.year2015.country[i]
+    }
+    giiDataPoints2015.push(giiDataPoint);
   };
 
-  seriesData = [
+  // Create the Data Series object for the hdi plot
+  hdiSeriesData = [
     {
       name: "1998-2002",
       color: 'rgba(223, 83, 83, .5)',
-      data: dataPoints2000
+      data: hdiDataPoints2000
     },
     {
       name: "2008-2012",
       color: 'rgba(119, 152, 191, .5)',
-      data: dataPoints2010
+      data: hdiDataPoints2010
     },
     {
       name: "2013-2017",
       color: 'rgba(130, 120, 10, .5)',
-      data: dataPoints2015
+      data: hdiDataPoints2015
     }
   ];
 
+  // Create the Data Series object for the hdi plot
+  giiSeriesData = [
+    {
+      name: "1998-2002",
+      color: 'rgba(223, 83, 83, .5)',
+      data: giiDataPoints2000
+    },
+    {
+      name: "2008-2012",
+      color: 'rgba(119, 152, 191, .5)',
+      data: giiDataPoints2010
+    },
+    {
+      name: "2013-2017",
+      color: 'rgba(130, 120, 10, .5)',
+      data: giiDataPoints2015
+    }
+  ];
 
-  Highcharts.chart('scatter-container', {
+  // Plot for hdi vs % urbanized
+  Highcharts.chart('hdi-container', {
     chart: {
       type: 'scatter',
       zoomType: 'xy'
@@ -120,10 +173,75 @@ d3.json('/hdi-gdp-gii-data', function(error, response) {
       }
     },
 
-    series: seriesData
+    series: hdiSeriesData
+
+  });
+
+
+  // Plot for GII vs. % urbanized
+  Highcharts.chart('gii-container', {
+    chart: {
+      type: 'scatter',
+      zoomType: 'xy'
+    },
+    title: {
+      text: 'GII vs % urbanized for various time periods'
+    },
+    subtitle: {
+      text: 'Source: Aquastat'
+    },
+    xAxis: {
+      title: {
+        enabled: true,
+        text: '% urbanized (population)'
+      },
+      startOnTick: true,
+      endOnTick: true,
+      showLastLabel: true
+    },
+    yAxis: {
+      title: {
+        text: 'Gender Inequality Index (GII)'
+      }
+    },
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'bottom',
+      x: -10,
+      y: -60,
+      floating: true,
+      backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
+      borderWidth: 1
+    },
+    plotOptions: {
+      scatter: {
+        marker: {
+          radius: 5,
+          states: {
+            hover: {
+              enabled: true,
+              lineColor: 'rgb(100,100,100)'
+            }
+          }
+        },
+        states: {
+          hover: {
+            marker: {
+              enabled: false
+            }
+          }
+        },
+        tooltip: {
+          headerFormat: '<b>{series.name}</b><br>',
+          pointFormat: '{point.name}: {point.x} %, {point.y}'
+        }
+      }
+    },
+
+    series: giiSeriesData
 
   });
 
 });
-
 
