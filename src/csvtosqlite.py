@@ -17,7 +17,7 @@ Base = declarative_base()
 
 class Data(Base):
     #Tell SQLAlchemy what the table name is and if there's any table-specific arguments it should know about
-	__tablename__ = 'Data'
+	__tablename__ = 'Aquastat'
 	__table_args__ = {'sqlite_autoincrement': True}
     #tell SQLAlchemy the name of column and its attributes:
 	id = Column(Integer, primary_key=True, nullable=False) 
