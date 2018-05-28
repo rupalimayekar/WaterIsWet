@@ -16,8 +16,9 @@
 
   <!-- Highcharts -->
   <script src="https://code.highcharts.com/highcharts.js"></script>
-  <!-- <script src="https://code.highcharts.com/modules/exporting.js"></script> -->
-
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/highcharts-more.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
   <!-- Our CSS -->
   <!-- <link rel="stylesheet" type="text/css" href="styles/styles.css"> -->
@@ -35,8 +36,19 @@
   <br><br>
   <div id="gii-container" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto"></div>
   <br><br>
+  <h3 class="text-center">Scatter Plot of GDP against urbanized %</h3>
+  <br><br>
+  <div id="gdp-container" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto"></div>
+  <br><br>
+  <h3 class="text-center">Bubble Plot of HDI, GII against GDP %</h3>
+  <br><br>
+  <div id="bubble-container" style="height: 400px; min-width: 310px; max-width: 600px; margin: 0 auto"></div>
 </body>
+
+<!-- Dark Theme for Highcharts-->
 <script src="../static/js/dark-unica-theme.js"></script>
+
+<!-- Our javascript for populating the charts -->
 <script src="../static/js/pop-hdi-gdp-plots.js"></script>
 
 </html>
