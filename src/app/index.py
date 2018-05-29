@@ -117,10 +117,18 @@ def show_safe_water_gii_plot_data():
 
   conn = engine.connect()
 
-  data = conn.execute('SELECT country, water_stress, gii FROM Aquastat').fetchall()
-  df = pd.DataFrame().from_records(data,columns=[['country', 'hdi','nri']])
-  df2 = df.groupby('country').mean()
-  safe_water_data = df2.to_dict
+  data = conn.execute('SELECT country, water_stress, gii FROM Aquastat\
+    WHERE water_stress IS NOT NULL and gii IS NOT NULL').fetchall()
+  df = pd.DataFrame().from_records(data,columns=[['country', 'water_stress','gii']])
+  df2 = df.groupby('country').mean().reset_index()
+  country = df2['country'].tolist()
+  water_stress = df2['water_stress'].tolist()
+  gii = df2['gii'].tolist()
+  safe_water_data = {
+    'country': country,
+    'water_stress' : water_stress,
+    'gii' : gii
+  }
   return jsonify(safe_water_data)
 
 
