@@ -1,14 +1,70 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" language="en-US">
-  {% if title %}
-  <title>{{ title }}</title>
-  {% else %}
-  <title>Water Usage Worldwide</title>
-  {% endif %}
-</head>
-<body>
-  <p>Home</p>
-</body>
-</html>
+
+{% extends "layout.html" %}
+{% set active_page = "index" %}
+
+
+{% block content %}
+    <div class="container mt-3">
+        <div class="jumbotron">
+            <h1 class="display-3">Water is Wet</h1>
+            <p class="lead">An Exploratory Data Analysis project to see what factors affect the development index of countries around the world</p>
+            <hr class="my-4">
+            <p>Comparing parameters related to water resources, agriculture, land and population over a time period against some development indicators for countries like Human Development Indicator (HDI), Gross Domestic Product (GDP), Gender Inequality Index (GII) and Prevelance of Undernourishment.</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="/thesis" role="button">Learn more</a>
+            </p>
+        </div>
+        <div class="row">
+            <div class="row">
+                <div class="col-sm-6 col-md-3">
+                    <div class="card text-white bg-primary mb-3">
+                        <div class="card-header">Viz 1</div>
+                        <div class="card-body">
+                            <img style="height: 100%; width: 100%; display: block;" src="static/images/wateriswet.jpg" alt="Scatter Plot: Lattitude v. Cloudiness">
+                            <p class="card-text">Short Caption Goes Here</p>
+                            <button type="button" class="btn btn-secondary">
+                                <a href="/cloudiness" style="color:inherit">Read more</a></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="card text-white bg-primary mb-3">
+                        <div class="card-header">Viz 2</div>
+                        <div class="card-body">
+                            <img style="height: 100%; width: 100%; display: block;" src="static/images/wateriswet.jpg" alt="Scatter Plot: Lattitude v. Cloudiness" />
+                            <p class="card-text">Short Caption Goes Here</p>
+                            <button type="button" class="btn btn-secondary"><a href="humidity.html" style="color:inherit">Read more</a></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="card text-white bg-primary mb-3">
+                        <div class="card-header">Viz 3</div>
+                        <div class="card-body">
+                            <img style="height: 100%; width: 100%; display: block;" src="static/images/wateriswet.jpg" alt="Scatter Plot: Lattitude v. Cloudiness">
+                            <p class="card-text">Short Caption Goes Here</p>
+                            <button type="button" class="btn btn-secondary">
+                                <a href="/temperature" style="color:inherit">Read more</a></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="card text-white bg-primary mb-3">
+                        <div class="card-header">Viz 4</div>
+                        <div class="card-body">
+                            <img style="height: 100%; width: 100%; display: block;" src="static/images/wateriswet.jpg" alt="Scatter Plot: Lattitude v. Cloudiness">
+                            <p class="card-text">Short Caption Goes Here</p>
+                            <button type="button" class="btn btn-secondary">
+                                <a href="/wind" style="color:inherit">Read more</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="col-sm-12">
+                
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
