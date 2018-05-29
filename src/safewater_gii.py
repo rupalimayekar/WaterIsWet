@@ -9,14 +9,14 @@ from sqlalchemy import create_engine, func
 
 engine = create_engine('sqlite:///../data/Aquastat.sqlite')
 
-Base=automap_base()
+Base = automap_base()
 Base.prepare(engine, reflect = True)
 inspector = inspect(engine)
 inspector.get_table_names()
-session=Session(engine)
+session = Session(engine)
 conn = engine.connect()
 
-data=conn.execute('SELECT country, dependency_ratio FROM Aquastat').fetchall()
-
-df=pd.DataFrame().from_records(data, columns=[['country','dependency_ratio']])
-
+data = conn.execute('SELECT country, water_stress, gii FROM Aquastat').fetchall()
+df = pd.DataFrame().from_records(data,columns=[['country', 'hdi','nri']])
+df2 = df.groupby('country').mean()
+safe_water_data = df2.to_dict
