@@ -1,0 +1,101 @@
+ {% extends "layout.html" %}
+ {% set active_page = "thesis" %}
+
+{% block content %}
+<div class="container">
+    <!-- Creates the Overall Grid -->
+    <div class="row">
+        <div class="col-md-8">
+            <div class="section">
+                <p>We believe the following relationships and dependencies exist and through our analysis propose to present the relationships by exploring the data provided by <a href="http://www.fao.org/home/en/" target="_blank">The Food and Agriculture Organization of the United Nations</a> under their <a href="http://www.fao.org/nr/water/aquastat/main/index.stm" target="_blank">AQUASTAT</a> project.
+                </p>
+                <ul class="ml-4 list-unstyled">
+                    <li>
+                        <p>The development of a country depends on its water resources (rainfall, external resources, internal resources)</p>
+                    </li>
+                    <li>
+                        <p>The development of a country depends on the rural population and production from agriculture (crops and livestock).</p>
+                    </li>
+                    <li>
+                        <p>The agricultural production of a country is realted to its water resources and also the amount of land cultivated.</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="section">
+                <h4>AQUASTAT Data</h4>
+                The data for this Analysis has been downloaded from the FAO's <a href="http://www.fao.org/nr/water/aquastat/data/query/index.html?lang=en" target="_blank"> AQUASTAT Database</a>. This database provides values of cerain parameters realted to land, population, water, development and agriculture over a few decades.
+            </div>
+            <div class="section">
+                <h4>Questions:</h4>
+                <p>We propose to answer the following questions for this project. The ability to answer the questions is based on the availability of these values in the data set across a selected time period. For the definition of the terms and indicators, please refer to the <a href="/glosary">Glossary</a> section provided at the end of this document.</p>
+                <ol>
+                    <li>
+                        <p>Is GDP realted to population? Do more densly populated countries have higher GDP index? Do countries with higher rural population have a higher GDP?</p>
+                    </li>
+                    <li>
+                        <p>Is GDP related to the % of Total Area Cultivated? Do countries with more cultivated area have a higher GDP per capita?</p>
+                    </li>
+                    <li>
+                        <p>Is the HDI directly related to the urban population of the country? Do more "Urbanized" countries have higher HDI? Similarly do more urbanized countries have a lower GII?</p>
+                    </li>
+                    <li>
+                        <p>Do countries with higher GDP have a higher HDI? Similarty do countries with higher GDP have a lower GII?</p>
+                    </li>
+                    <li class="mb-3">How is the HDI of a country related to its water resources?
+                        <ul>
+                            <li>Do countries with a higher NRI have a higher HDI?</li>
+                            <li>Do countries with a lower Dependency Ratio have a higher HDI?</li>
+                            <li>Do countries with a higher Water Stress Indicator have a lower HDI?</li>
+                            <li>Do countries with a higher Flood Occurrence Indicator have a lower HDI?</li>
+                        </ul>
+                    </li>
+                    <li class="mb-3">How is the GDP of a country related to its water resources?
+                        <ul>
+                            <li>Do countries with a higher NRI have a higher GDP?</li>
+                            <li>Do countries with a lower Dependency Ration have a higher GDP?</li>
+                            <li>Do countries with a higher Water Stress Indicator have a lower GDP?</li>
+                            <li>Do countries with a higher Flood Occurrence Indicator have a lower GDP?</li>
+                        </ul>
+                    </li>
+                    <li class="mb-3">How is the Prevelance of undernourishment related to the water resources for a country?
+                    <ul>
+                        <li>Do countries with a lower NRI have higher Prevelance of undernourishment?</li>
+                        <li>Do countries with a higher Dependency Ratio have higher Prevelance of undernourishment?</li>
+                        <li>Do countries with a higher Water Stress Indicator have a higher Prevelance of undernourishment? </li>
+                        <li>Do countries with a higher Flood Occurrence Indicator have a higher Prevelance of undernourishment?</li>
+                    </ul>
+                </li>
+                </ol>
+            </div>
+            <div class="section">
+                <h4>Summary Statistics</h4>
+                <ol>
+                    <li>
+                        <p>We also propose to provide a map representation of how various countries compare against each other based on certain development indicators like HDI, GDP, % total area cultivated, population density, total water resources, etc</p>
+                    </li>
+                    <li>
+                        <p>As part of summary statistics it would also be good to provide a tabular representation of certain indicators like HDI, GDP, % total area cultivated, population density, total water resources, etc and a way to easity determine the top 10 and bottom 10 countries for these indicators.</p>
+                    </li>
+                </ol>
+            </div>
+            <div class="section">
+                <h4>Technical Considerations</h4>
+                <p>The project would result in a Flask powered website that will show the analysis on various web pages/popups on that site. The Website will be developed using HTML/CSS and Javascript libraries. The website will use the Bootstrap framework to be responsive. We will use a SQLite database to store and retrieve all the required data for the project.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <img src="static/images/wateriswet.jpg" class="img-fluid pb-1" alt="">
+            <img src="static/images/wateriswet.jpg" class="img-fluid pb-1" alt="">
+            <img src="static/images/wateriswet.jpg" class="img-fluid pb-1" alt="">
+            <img src="static/images/wateriswet.jpg" class="img-fluid pb-1" alt="">
+            <img src="static/images/wateriswet.jpg" class="img-fluid pb-1" alt="">
+            <img src="static/images/wateriswet.jpg" class="img-fluid pb-1" alt="">
+            <img src="static/images/wateriswet.jpg" class="img-fluid pb-1" alt="">
+            <img src="static/images/wateriswet.jpg" class="img-fluid pb-1" alt="">
+            <img src="static/images/wateriswet.jpg" class="img-fluid pb-1" alt="">
+            <img src="static/images/wateriswet.jpg" class="img-fluid pb-1" alt="">
+            <img src="static/images/wateriswet.jpg" class="img-fluid pb-1" alt="">
+        </div>
+    </div>
+</div>
+{% endblock %}
