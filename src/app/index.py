@@ -14,7 +14,7 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 # db_uri = os.getenv("DATABASE_URI", "///../../data/data.sqlite")
-db_uri ="sqlite:///../../data/data.sqlite"
+db_uri = "sqlite:///../../data/data.sqlite"
 engine = create_engine(db_uri)
 
 # reflect an existing database into a new model
