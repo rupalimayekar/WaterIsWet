@@ -14,7 +14,7 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 # db_uri = os.getenv("DATABASE_URI", "///../../data/data.sqlite")
-db_uri ="sqlite:///../../data/data.sqlite"
+db_uri ="sqlite:///../../data/Aquastat.sqlite"
 engine = create_engine(db_uri)
 
 # reflect an existing database into a new model
@@ -109,6 +109,21 @@ def show_hdi_plot_data():
   # end for loop
 
   return jsonify(hdi_dict)
+
+#This route loads the data for the safe water versus gii plot
+@app.route('/safe-water-gii-data')
+def show_safe_water_gii_plot_data():
+  #grabbing data from sql
+
+  conn = engine.connect()
+
+  data = conn.execute('SELECT country, water_stress, gii FROM Aquastat').fetchall()
+  df = pd.DataFrame().from_records(data,columns=[['country', 'hdi','nri']])
+  df2 = df.groupby('country').mean()
+  safe_water_data = df2.to_dict
+  return jsonify(safe_water_data)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
