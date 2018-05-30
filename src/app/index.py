@@ -34,6 +34,15 @@ session = Session(engine)
 def home():
   return render_template('index.html', title='Home')
 
+@app.route('/glossary')
+def glossary():
+  return render_template('glossary.html', title='Glossary')
+
+
+@app.route('/thesis')
+def thesis():
+  return render_template('thesis.html', title='Thesis')
+
 @app.route('/gdp')
 def gdp():
   return render_template('gdp.html', title='Gross Domestic Product')
@@ -71,10 +80,10 @@ def show_hdi_plot_data():
   # query the data for each year bucket
   for year in years:
 
-    query_statement = "SELECT country, `year bucket`, gdp_per_cap, hdi, gii, \
+    query_statement = "SELECT country, year_bucket, gdp_per_cap, hdi, gii, \
                       round(((urban_pop/total_pop)*100), 2) urbanized \
-                      FROM Data \
-                      WHERE `mid year` = " + str(year) + "\
+                      FROM Aquastat \
+                      WHERE mid_year = " + str(year) + "\
                       AND hdi IS NOT NULL AND gdp_per_cap IS NOT NULL AND gii IS NOT NULL \
                       ORDER BY country"
 
