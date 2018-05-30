@@ -34,6 +34,15 @@ session = Session(engine)
 def home():
   return render_template('index.html', title='Home')
 
+@app.route('/glossary')
+def glossary():
+  return render_template('glossary.html', title='Glossary')
+
+
+@app.route('/thesis')
+def thesis():
+  return render_template('thesis.html', title='Thesis')
+
 @app.route('/gdp')
 def gdp():
   return render_template('gdp.html', title='Gross Domestic Product')
