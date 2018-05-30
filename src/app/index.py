@@ -35,17 +35,26 @@ session = Session(engine)
 def home():
   return render_template('index.html', title='Home')
 
+@app.route('/glossary')
+def glossary():
+  return render_template('glossary.html', title='Glossary')
+
+
+@app.route('/thesis')
+def thesis():
+  return render_template('thesis.html', title='Thesis')
+
 @app.route('/gdp')
 def gdp():
-  return render_template('gdp.html', title='Gross Domestic Product')
+  return render_template('gdp.html', title='Gross Domestic Product (GDP)')
 
-@app.route('/irrigation')
+@app.route('/hdi')
 def irrigation():
-  return render_template('irrigation.html', title='Irrigation')
+  return render_template('hdi.html', title='Human Development Index (HDI)')
 
-@app.route('/land')
+@app.route('/gii')
 def land():
-  return render_template('land_use.html', title='Land')
+  return render_template('gii.html', title='Gender Inequality Index (GII)')
 
 @app.route('/resources')
 def resources():
@@ -72,10 +81,10 @@ def show_hdi_plot_data():
   # query the data for each year bucket
   for year in years:
 
-    query_statement = "SELECT country, `year bucket`, gdp_per_cap, hdi, gii, \
+    query_statement = "SELECT country, year_bucket, gdp_per_cap, hdi, gii, \
                       round(((urban_pop/total_pop)*100), 2) urbanized \
-                      FROM Data \
-                      WHERE `mid year` = " + str(year) + "\
+                      FROM Aquastat \
+                      WHERE mid_year = " + str(year) + "\
                       AND hdi IS NOT NULL AND gdp_per_cap IS NOT NULL AND gii IS NOT NULL \
                       ORDER BY country"
   
@@ -122,6 +131,7 @@ def show_safe_water_gii_plot_data():
     WHERE water_stress IS NOT NULL and gii IS NOT NULL').fetchall()
 
   df = pd.DataFrame().from_records(data, columns=['country', 'water_stress','gii'])
+  df = pd.DataFrame().from_records(data,columns=['country', 'water_stress','gii'])
   df2 = df.groupby('country').mean().reset_index()
   country = df2['country'].tolist()
   water_stress = df2['water_stress'].tolist()
@@ -134,7 +144,33 @@ def show_safe_water_gii_plot_data():
   
   return jsonify(safe_water_data)
 
+@app.route('/hdi-gii-data')
+def show_hdi_gii_plot_data():
+  #grabbing data from sql
 
+  conn = engine.connect()
+
+  data = conn.execute('SELECT country, hdi, gii FROM Aquastat\
+    WHERE hdi IS NOT NULL and gii IS NOT NULL').fetchall()
+  df = pd.DataFrame().from_records(data,columns=['country', 'hdi','gii'])
+  df2 = df.groupby('country').mean().reset_index()
+  country = df2['country'].tolist()
+  water_stress = df2['hdi'].tolist()
+  gii = df2['gii'].tolist()
+  hdi_data = {
+    'country': country,
+    'hdi' : water_stress,
+    'gii' : gii
+  }
+  return jsonify(hdi_data)
+
+@app.route('/safe-water-gii-plot')
+def safe_water_gii_plot():  
+  return render_template('safe-water-gii-plot.html', title='GII versus percent availability of safe water')
+
+@app.route('/hdi-gii-plot')
+def hdi_gii_plot():  
+  return render_template('hdi-gii-plot.html', title='GII versus HDI')  
 
 if __name__ == "__main__":
     app.run(debug=True)

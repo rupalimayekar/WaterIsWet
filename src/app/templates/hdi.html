@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% set active_page = "hdi" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div id="hdi-container" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto"></div>
+        </div>
+        <div class="col-md-4">
+            <h4>HDI vs % Urban Population:</h4 <br>
+            This plot shows the relationship of HDI and % of urban population of a country for a given 
+            time period. We can see that the countries that are more urbanized are also more developed.
+        </div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-md-8">
+            <div id="bubble-container" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto"></div>
+        </div>
+        <div class="col-md-4">
+            <h4>HDI, GII and GDP per Capita</h4 <br>
+            This plot shows the relationship of HDI, GII and GDP per Capita of a country for a given 
+            time period. We can see that the HDI is consistantly higher when the GDP per Capita is more than 10,000 and 
+            other factors play a role in the HDI of countries with lower GDP per Capita. We also see that the Gender Inequality Index
+            is higher for countries with a lower GDP per capita and lower HDI. These parameters show a stronger relationship
+            for more developed countries.
+        </div>
+    </div>
+    <br><br>
+    <div class="row">
+    <div class="col-md-8">
+    </div>
+    <div class="col-md-4">
+    </div>
+    </div>
+</div>
+
+<!-- Our javascript for populating the charts -->
+<script src="../static/js/hdi.js"></script>
+
+
+{% endblock %}
