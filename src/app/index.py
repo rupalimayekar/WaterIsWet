@@ -15,7 +15,7 @@ app = Flask(__name__)
 #################################################
 # db_uri = os.getenv("DATABASE_URI", "///../../data/data.sqlite")
 db_uri = "sqlite:///../../data/data.sqlite"
-db_uri ="sqlite:///../../data/Aquastat.sqlite"
+db_uri = "sqlite:///../../data/Aquastat.sqlite"
 engine = create_engine(db_uri)
 
 # reflect an existing database into a new model
@@ -72,15 +72,13 @@ def show_hdi_plot_data():
   # query the data for each year bucket
   for year in years:
 
-    # query_statement = "SELECT country, `year bucket`, gdp_per_cap, hdi, gii, \
-    #                   round(((urban_pop/total_pop)*100), 2) urbanized \
-    #                   FROM Data \
-    #                   WHERE `mid year` = " + str(year) + "\
-    #                   AND hdi IS NOT NULL AND gdp_per_cap IS NOT NULL AND gii IS NOT NULL \
-    #                   ORDER BY country"
-    
-    query_statement = "SELECT * from data"
-
+    query_statement = "SELECT country, `year bucket`, gdp_per_cap, hdi, gii, \
+                      round(((urban_pop/total_pop)*100), 2) urbanized \
+                      FROM Data \
+                      WHERE `mid year` = " + str(year) + "\
+                      AND hdi IS NOT NULL AND gdp_per_cap IS NOT NULL AND gii IS NOT NULL \
+                      ORDER BY country"
+  
     results = session.connection().execute(query_statement)
     
     countries = []
@@ -107,7 +105,7 @@ def show_hdi_plot_data():
     }
 
     # Add each year dict into the main dict
-    hdi_dict["year"+str(year)] = year_dict
+    hdi_dict["year" + str(year)] = year_dict
 
   # end for loop
 
@@ -123,13 +121,13 @@ def show_safe_water_gii_plot_data():
   data = conn.execute('SELECT country, water_stress, gii FROM Aquastat\
     WHERE water_stress IS NOT NULL and gii IS NOT NULL').fetchall()
 
-  df = pd.DataFrame().from_records(data,columns=[['country', 'water_stress','gii']])
+  df = pd.DataFrame().from_records(data, columns=['country', 'water_stress','gii'])
   df2 = df.groupby('country').mean().reset_index()
   country = df2['country'].tolist()
   water_stress = df2['water_stress'].tolist()
   gii = df2['gii'].tolist()
   safe_water_data = {
-    'country': country,
+    'country' : country,
     'water_stress' : water_stress,
     'gii' : gii
   }
