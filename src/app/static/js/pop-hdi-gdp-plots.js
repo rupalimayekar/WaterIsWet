@@ -347,7 +347,7 @@ d3.json('/hdi-gdp-gii-data', function(error, response) {
 
   });
 
-  // Plot for GII vs. % urbanized
+  // Plot for GDP vs. % urbanized
   Highcharts.chart('gdp-container', {
     chart: {
       type: 'scatter',
@@ -408,7 +408,7 @@ d3.json('/hdi-gdp-gii-data', function(error, response) {
       }
     },
 
-    series: giiSeriesData
+    series: gdpSeriesData
 
   });
   

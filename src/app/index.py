@@ -45,15 +45,15 @@ def thesis():
 
 @app.route('/gdp')
 def gdp():
-  return render_template('gdp.html', title='Gross Domestic Product')
+  return render_template('gdp.html', title='Gross Domestic Product (GDP)')
 
-@app.route('/irrigation')
+@app.route('/hdi')
 def irrigation():
-  return render_template('irrigation.html', title='Irrigation')
+  return render_template('hdi.html', title='Human Development Index (HDI)')
 
-@app.route('/land')
+@app.route('/gii')
 def land():
-  return render_template('land_use.html', title='Land')
+  return render_template('gii.html', title='Gender Inequality Index (GII)')
 
 @app.route('/resources')
 def resources():
