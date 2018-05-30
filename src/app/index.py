@@ -128,7 +128,7 @@ def show_safe_water_gii_plot_data():
 
   data = conn.execute('SELECT country, water_stress, gii FROM Aquastat\
     WHERE water_stress IS NOT NULL and gii IS NOT NULL').fetchall()
-  df = pd.DataFrame().from_records(data,columns=[['country', 'water_stress','gii']])
+  df = pd.DataFrame().from_records(data,columns=['country', 'water_stress','gii'])
   df2 = df.groupby('country').mean().reset_index()
   country = df2['country'].tolist()
   water_stress = df2['water_stress'].tolist()
@@ -140,7 +140,33 @@ def show_safe_water_gii_plot_data():
   }
   return jsonify(safe_water_data)
 
+@app.route('/hdi-gii-data')
+def show_hdi_gii_plot_data():
+  #grabbing data from sql
 
+  conn = engine.connect()
+
+  data = conn.execute('SELECT country, hdi, gii FROM Aquastat\
+    WHERE hdi IS NOT NULL and gii IS NOT NULL').fetchall()
+  df = pd.DataFrame().from_records(data,columns=['country', 'hdi','gii'])
+  df2 = df.groupby('country').mean().reset_index()
+  country = df2['country'].tolist()
+  water_stress = df2['hdi'].tolist()
+  gii = df2['gii'].tolist()
+  hdi_data = {
+    'country': country,
+    'hdi' : water_stress,
+    'gii' : gii
+  }
+  return jsonify(hdi_data)
+
+@app.route('/safe-water-gii-plot')
+def safe_water_gii_plot():  
+  return render_template('safe-water-gii-plot.html', title='GII versus percent availability of safe water')
+
+@app.route('/hdi-gii-plot')
+def hdi_gii_plot():  
+  return render_template('hdi-gii-plot.html', title='GII versus HDI')  
 
 if __name__ == "__main__":
     app.run(debug=True)
