@@ -66,6 +66,9 @@ def resources():
 def show_hdi_plots():  
   return render_template('pop-hdi-gdp-plots.html', title='Population based HDI')
 
+@app.route('/gdp-hdi-gii')
+def show_gdp_plots():
+  return render_template('gdp-hdi-gii-plots.html', title='GDP vs GDP and GII')
 
 # This route gets the data for the hdi, gii and gdp vs % urbanized scatter plots
 # and the bubble plot comparing hdi,gii and gdp
