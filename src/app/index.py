@@ -55,9 +55,9 @@ def irrigation():
 def land():
   return render_template('gii.html', title='Gender Inequality Index (GII)')
 
-@app.route('/resources')
+@app.route('/data')
 def resources():
-  return render_template('resources.html', title='Resources')
+  return render_template('data.html', title='Data for 2013-2017')
 
 # This route displays the page with the three scatter plots of hdi, gii and gdp vs %Urbanized
 # and the bubbl eplot of hdi, gii and gdp
@@ -168,5 +168,35 @@ def safe_water_gii_plot():
 def hdi_gii_plot():  
   return render_template('hdi-gii-plot.html', title='GII versus HDI')  
 
+
+# This route gets the data for the summary table
+@app.route('/summary-table-data')
+def show_summary_table():
+    query_statement = "SELECT country, year_bucket, total_pop, gdp_per_cap, hdi, gii, \
+                    round(((urban_pop/total_pop)*100), 2) urbanized \
+                    FROM Aquastat \
+                    WHERE mid_year = 2015 \
+                    ORDER BY urbanized desc"
+
+    results = session.connection().execute(query_statement)
+    
+    summary_data = []
+
+    # Loop through the results and create a dict of arrays for this year bucket
+    for result in results:
+      rowdict = {
+        "country": result[0],
+        "year_bucket": result[1],
+        "total_pop": result[2],
+        "gdp": result[3],
+        "hdi": result[4],
+        "gii": result[5],
+        "urbanized": result[6]
+      }
+      summary_data.append(rowdict)
+
+    return jsonify(summary_data)
+
 if __name__ == "__main__":
     app.run(debug=True)
+
