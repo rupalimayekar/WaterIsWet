@@ -33,7 +33,7 @@ d3.json('/hdi-gdp-gii-data', function(error, response) {
   bubbleDataPoints2015 = [];
 
   // Loop through the response and create the js objects for the plots for the 2000 year bucket
-  for (var i=0; i<response.year2000.country.length; i++) {
+  for (var i = 0; i < response.year2000.country.length; i++) {
     // hdi plot data
     hdiDataPoint = {
       x: response.year2000.urbanized[i], 
@@ -68,7 +68,7 @@ d3.json('/hdi-gdp-gii-data', function(error, response) {
   };
 
   // Loop through the response and create the js objects for the plots for the 2010 year bucket
-  for (var i=0; i<response.year2010.country.length; i++) {
+  for (var i = 0; i < response.year2010.country.length; i++) {
     // dataPoint = [response.year2010.urbanized[i], response.year2010.hdi[i]];
     hdiDataPoint = {
       x: response.year2010.urbanized[i], 
@@ -104,7 +104,7 @@ d3.json('/hdi-gdp-gii-data', function(error, response) {
   };
 
   // Loop through the response and create the js objects for the plots for the 2015 year bucket
-  for (var i=0; i<response.year2015.country.length; i++) {
+  for (var i = 0; i < response.year2015.country.length; i++) {
     // dataPoint = [response.year2015.urbanized[i], response.year2015.hdi[i]];
     hdiDataPoint = {
       x: response.year2015.urbanized[i], 
