@@ -201,50 +201,45 @@ def show_summary_table():
 def displaymap():
     return render_template("summary_map.html",title='Summary Map')
 
-@app.route("/summarymap")
-def hdi_map():
-    years = [2000, 2010, 2015]
+@app.route("/summarymap/<defaultTopic>")
+def map(defaultTopic):
+    years = [2000, 2005, 2010, 2015]
+    
     map_dict={}
 
     for year in years:
 
-        query_statement = "SELECT country,cn_code, `year bucket`, gdp_per_cap, hdi, gii, \
-                        pop_density \
+        query_statement = "SELECT country,cn_code, `year bucket`," + defaultTopic + " \
                         FROM Data \
                         WHERE `mid year` = " + str(year) + "\
-                        AND cn_code IS NOT NULL AND hdi IS NOT NULL AND gdp_per_cap IS NOT NULL AND gii IS NOT NULL \
+                        AND cn_code IS NOT NULL AND "+ defaultTopic + " IS NOT NULL\
                         ORDER BY country"
 
         results = session.connection().execute(query_statement)
         
+        
         countries = []
         country_code =[]
         year_bucket =[]
-        gdp =[]
-        gii=[]
-        hdi=[]
-        pop_density=[]
+        value = []
         
         for result in results:
             countries.append(result[0])
             country_code.append(result[1])
             year_bucket.append(result[2])
-            gdp.append(result[3])
-            hdi.append(result[4])
-            gii.append(result[5])
-            pop_density.append(result[6])
+            value.append(result[3])
+            
         year_dict={
             "country":countries,
             "country_code":country_code,
             "year_bucket":year_bucket,
-            "gdp":gdp,
-            "hdi":hdi,
-            "gii":gii,
-            "pop_density":pop_density
+            "value":value,
+            
             
         }
         map_dict["year"+str(year)] = year_dict
     return jsonify(map_dict)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
