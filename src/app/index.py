@@ -24,9 +24,6 @@ Base = automap_base()
 # reflect the tables
 Base.prepare(engine, reflect=True)
 
-# # Assign each table class to a variable
-# data = Base.classes.Data
-
 # Create a session
 session = Session(engine)
 
@@ -58,7 +55,7 @@ def land():
 
 @app.route('/data')
 def resources():
-  return render_template('data.html', title='Data for 2013-2017')
+  return render_template('data.html', title='Water is Wet - Data by Year Range')
 
 # This route displays the page with the three scatter plots of hdi, gii and gdp vs %Urbanized
 # and the bubbl eplot of hdi, gii and gdp
@@ -185,30 +182,47 @@ def hdi_gii_plot():
 # This route gets the data for the summary table
 @app.route('/summary-table-data')
 def show_summary_table():
-    query_statement = "SELECT country, year_bucket, total_pop, gdp_per_cap, hdi, gii, \
-                    round(((urban_pop/total_pop)*100), 2) urbanized \
-                    FROM Aquastat \
-                    WHERE mid_year = 2015 \
-                    ORDER BY urbanized desc"
 
-    results = session.connection().execute(query_statement)
+  summary_data = []
+  query = "SELECT DISTINCT mid_year, year_bucket FROM Aquastat ORDER BY mid_year DESC"
+  years = session.connection().execute(query)
+
+  for year_row in years:
+
+    query = "SELECT country, pop_density, \
+                    round(((urban_pop/total_pop)*100), 2) urbanized, \
+                    gdp_per_cap, hdi, gii, water_stress, \
+                    perc_cultivated, perc_safe_water, perc_undernourish \
+                    FROM Aquastat \
+                    WHERE mid_year = " + str(year_row[0]) + "\
+                    ORDER BY country "
+
+    results = session.connection().execute(query)
     
-    summary_data = []
+    # Array to hold the data for the current year bucket
+    year_data = []
 
     # Loop through the results and create a dict of arrays for this year bucket
     for result in results:
       rowdict = {
         "country": result[0],
-        "year_bucket": result[1],
-        "total_pop": result[2],
+        "pop_density": result[1],
+        "urbanized": result[2],
         "gdp": result[3],
         "hdi": result[4],
         "gii": result[5],
-        "urbanized": result[6]
+        "water_stress": result[6],
+        "perc_cultivated": result[7],
+        "perc_safe_water": result[8],
+        "perc_undernourish": result[9]
       }
-      summary_data.append(rowdict)
+      # append row to this year bucket data
+      year_data.append(rowdict)
 
-    return jsonify(summary_data)
+    print("Appending: " + str(year_row[1]))
+    summary_data.append({"year_bucket": year_row[1], "data": year_data})
+
+  return jsonify(summary_data)
 
 @app.route("/map")
 def displaymap():
