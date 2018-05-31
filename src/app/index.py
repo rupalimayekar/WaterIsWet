@@ -139,9 +139,10 @@ def show_safe_water_gii_plot_data():
   country = df2['country'].tolist()
   perc_safe_water = df2['perc_safe_water'].tolist()
   gii = df2['gii'].tolist()
+  # water_stress = df2['water_stress'].tolist()
   safe_water_data = {
     'country' : country,
-    'water_stress' : water_stress,
+    # 'water_stress' : water_stress,
     'country': country,
     'perc_safe_water' : perc_safe_water,
     'gii' : gii
