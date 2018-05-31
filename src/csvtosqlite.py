@@ -17,12 +17,13 @@ Base = declarative_base()
 
 class Data(Base):
     #Tell SQLAlchemy what the table name is and if there's any table-specific arguments it should know about
-	__tablename__ = 'Data'
+	__tablename__ = 'Aquastat'
 	__table_args__ = {'sqlite_autoincrement': True}
     #tell SQLAlchemy the name of column and its attributes:
 	id = Column(Integer, primary_key=True, nullable=False) 
 	country = Column(VARCHAR)
-	year = Column(Integer)
+	mid_year = Column(Integer)
+	year_bucker = Column(VARCHAR)
 	area = Column(Float)
 	perc_cultivated = Column(Float)
 	total_pop = Column(Float)
@@ -46,7 +47,7 @@ class Data(Base):
 
 
 
-engine = create_engine('sqlite:///../data/data.sqlite')
+engine = create_engine('sqlite:///../data/Aquastat.sqlite')
 Base.metadata.create_all(engine)
 df_data = pd.read_csv('../data/Data_Final.csv')
 df_code = pd.read_csv('../data/countries.csv')

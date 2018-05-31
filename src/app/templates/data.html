@@ -1,0 +1,51 @@
+ {% extends "layout.html" %}
+
+{% set active_page = "data" %}
+{% block content %}
+<div class="container">
+    <div class-"row"><div class="col-md-12">
+        <div class="dropdown">
+            <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Select Year Range
+                <span class="caret"></span>
+            </button>
+            <ul id="year-list" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="#">2013-2017</a></li>
+                <li><a href="#">2008-2012</a></li>
+                <li><a href="#">2003-2007</a></li>
+                <li><a href="#">1998-2002</a></li>
+                <li><a href="#">1993-1997</a></li>
+            </ul>
+        </div>
+        <br>
+        <h4 id="year-text"></h4>
+    </div></div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-responsive table-bordered table-stripped table-condensed sortable">
+                <thead>
+                    <th id="country">Country</th>
+                    <th id="tot-pop">Population Density</th>
+                    <th id="urban">% Urbanized</th>
+                    <th id="hdi">HDI</th>
+                    <th id="gdp">GDP per Capita</th>
+                    <th id="gii">GII</th>
+                    <th id="water-stress">Water Stress</th>
+                    <th id="cultivated">% Cultivated Land</th>
+                    <th id="safe-water">% Safe Water</th>
+                    <th id="undernourished">% Undernourished</th>
+                </thead>
+                <tbody id="summary-table-body">
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Our javascript for populating the charts -->
+<script src="../static/js/summary-table.js"></script>
+<script src="../static/js/sorttable.js"></script>
+
+{% endblock %}

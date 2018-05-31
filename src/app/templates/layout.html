@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="UTF-8">
+    <title>Water is Wet: An Exploratory Data Analysis</title>
+    <!-- Include all compiled CSS (below), or include individual files as needed -->
+    <link rel="stylesheet" href="static/css/bootswatch.min.css">
+    <link rel="stylesheet" href="static/css/main.css">
+
+    <!-- d3 JavaScript -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <!-- Highcharts -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <!-- Dark Theme for Highcharts-->
+    <script src="../static/js/dark-unica-theme.js"></script>
+</head>
+
+<body>
+
+    {% set navigation_bar = [ ('/thesis', 'thesis', 'Thesis'), ('/glossary', 'glossary', 'Glossary') ] -%}
+    {% set drop_down = [ ('/hdi', 'hdi', 'Human Development Index'), ('/gdp', 'gdp', 'Gross Domestic Product'), ('/gii', 'gii', 'Gender Inequality Index'), ('/data', 'data', 'Data by Year Range'), ] -%}
+    {% set active_page = active_page|default('index') -%}
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">Water is Wet</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#vizDropdown" aria-controls="vizDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="vizDropdown">
+            <ul class="navbar-nav mr-auto">
+                <li class="dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Data Visualizations</a>
+                    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+
+                        {% for href, id, caption in drop_down %}
+                        <a{% if id == active_page %} class="dropdown-item active" {% else %} class="dropdown-item" {% endif %} href="{{ href|e }}">{{ caption|e }}</a>
+                        {% endfor %}
+
+                    </div>
+                </li>
+
+                {% for href, id, caption in navigation_bar %}
+                <li{% if id == active_page %} class="nav-item active" {% else %} class="nav-item" {% endif %}><a class="nav-link" href="{{ href|e }}">{{ caption|e }}</a></li>
+                {% endfor %}
+
+            </ul>
+        </div>
+    </nav>
+    <main>
+        
+        {% if active_page != "index" %} {% block jumbo %}
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">{{ title }}</h1>
+            </div>
+        </div>
+        {% endblock %} {% endif %}
+
+        {% block content %}{% endblock %}
+
+
+        <footer class="container-fluid footer">
+            <div align="center">
+                <hr class="my-4">
+                <h5>Analysis and Design by:</h5>
+                <ul>Andrea Karaffa, David Richter, Jen Vacanti, Luke Pharr and Rupali Mayekar</ul>
+                <p>© 2018 Copyright</p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- *****************************************************
+    *                                                        *
+    *             BOOTSTRAP AND JQUERY SCRIPTS               *
+    *                                                        *
+    ****************************************************** -->
+    <script src="static/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="static/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Dark Theme for Highcharts-->
+    <script src="../static/js/dark-unica-theme.js"></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript from Bootstrap-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
