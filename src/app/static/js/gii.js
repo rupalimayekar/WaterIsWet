@@ -157,6 +157,113 @@ d3.json('/hdi-gdp-gii-data', function(error, response) {
     },
     plotOptions: {
       scatter: {
+        marker: { 
+          radius: 5,
+          states: {
+            hover: {
+              enabled: true,
+              lineColor: 'rgb(100,100,100)'
+            }
+          }
+        },
+        states: {
+          hover: {
+            marker: {
+              enabled: false
+            }
+          }
+        },
+        tooltip: {
+          headerFormat: '<b>{series.name}</b><br>',
+          pointFormat: '{point.name}: {point.x} %, {point.y}'
+        }
+      }
+    },
+
+    series: giiSeriesData
+
+  });
+});
+
+//_____lukes stuff_______________________________________________________________________________________
+/**
+ * This javascript file contains the code to draw the scatter plots for GII
+ * 
+ * @author Rupali Mayekar
+ */
+
+/**
+ * get the data for HDI vs % urbanized scatter plot and plot it
+ */
+d3.json('/safe-water-gii-data', function(error, response) {
+  if (error) return console.warn(error);
+  console.log("RESPONSE", response);
+  
+  // arrays of data points for the three years for the gii plot
+  safe_waterDataPoints = [];
+
+
+  // Loop through the response and create the js objects for the plots for the 2000 year bucket
+  for (var i=0; i<response.country.length; i++) {
+
+    //GII plot data
+    giiDataPoint = {
+      x: response.perc_safe_water[i], 
+      y: response.gii[i],
+      name: response.country[i]
+    }
+    safe_waterDataPoints.push(giiDataPoint);
+  };
+
+
+  // Create the Data Series object for the hdi plot
+  giiSeriesData = [
+    {
+      name: "Average percent safe water",
+      color: 'rgba(223, 83, 83, 1)',
+      data: safe_waterDataPoints
+    }
+  ];
+
+  // Plot for GII vs. % urbanized
+  Highcharts.chart('gii-container-safe-water', {
+    chart: {
+      type: 'scatter',
+      zoomType: 'xy'
+    },
+    title: {
+      text: 'GII vs % Average percent safe water'
+    },
+    subtitle: {
+      text: 'Source: Aquastat'
+    },
+    xAxis: {
+      title: {
+        enabled: true,
+        text: 'Average percent safe water'
+      },
+      startOnTick: false,
+      endOnTick: false,
+      showLastLabel: true
+    },
+    yAxis: {
+      title: {
+        text: 'Gender Inequality Index (GII)'
+      }
+    },
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'bottom',
+      x: -10,
+      y: -250,
+      floating: true,
+      backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
+      borderWidth: 1,
+      enabled: false
+    },
+    plotOptions: {
+      scatter: {
         marker: {
           radius: 5,
           states: {
@@ -254,5 +361,103 @@ d3.json('/hdi-gdp-gii-data', function(error, response) {
   
     series: giiBubbleSeriesData
   
+  });
+});
+
+//--------------------------------------------------------------------------------------
+d3.json('/hdi-gii-data', function(error, response) {
+  if (error) return console.warn(error);
+  console.log("RESPONSE", response);
+  
+  // arrays of data points for the three years for the gii plot
+  safe_waterDataPoints = [];
+
+
+  // Loop through the response and create the js objects for the plots for the 2000 year bucket
+  for (var i=0; i<response.country.length; i++) {
+
+    //GII plot data
+    giiDataPoint = {
+      x: response.hdi[i], 
+      y: response.gii[i],
+      name: response.country[i]
+    }
+    safe_waterDataPoints.push(giiDataPoint);
+  };
+
+
+  // Create the Data Series object for the hdi plot
+  giiSeriesData = [
+    {
+      name: "Average HDI",
+      color: 'rgba(223, 83, 83, 1)',
+      data: safe_waterDataPoints
+    }
+  ];
+
+  // Plot for GII vs. % urbanized
+  Highcharts.chart('gii-container-hdi', {
+    chart: {
+      type: 'scatter',
+      zoomType: 'xy'
+    },
+    title: {
+      text: 'GII vs % Average HDI'
+    },
+    subtitle: {
+      text: 'Source: Aquastat'
+    },
+    xAxis: {
+      title: {
+        enabled: true,
+        text: 'Average HDI'
+      },
+      startOnTick: false,
+      endOnTick: false,
+      showLastLabel: true
+    },
+    yAxis: {
+      title: {
+        text: 'Gender Inequality Index (GII)'
+      }
+    },
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'bottom',
+      x: -10,
+      y: -250,
+      floating: true,
+      backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
+      borderWidth: 1,
+      enabled: false
+    },
+    plotOptions: {
+      scatter: {
+        marker: {
+          radius: 5,
+          states: {
+            hover: {
+              enabled: true,
+              lineColor: 'rgb(100,100,100)'
+            }
+          }
+        },
+        states: {
+          hover: {
+            marker: {
+              enabled: false
+            }
+          }
+        },
+        tooltip: {
+          headerFormat: '<b>{series.name}</b><br>',
+          pointFormat: '{point.name}: {point.x} %, {point.y}'
+        }
+      }
+    },
+
+    series: giiSeriesData
+
   });
 });

@@ -1,0 +1,30 @@
+ {% extends "layout.html" %}
+
+{% set active_page = "data" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-responsive table-bordered table-stripped table-condensed sortable">
+                <thead>
+                    <th id="country">Country</th>
+                    <th id="tot-pop">Total Population</th>
+                    <th id="urban">% Urban</th>
+                    <th id="year-range">Year Range</th>
+                    <th id="hdi">HDI</th>
+                    <th id="gdp">GDP per Capita</th>
+                    <th id="gii">GII</th>
+                </thead>
+                <tbody id="summary-table-body">
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Our javascript for populating the charts -->
+<script src="../static/js/summary-table.js"></script>
+<script src="../static/js/sorttable.js"></script>
+
+{% endblock %}

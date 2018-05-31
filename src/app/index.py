@@ -56,9 +56,9 @@ def irrigation():
 def land():
   return render_template('gii.html', title='Gender Inequality Index (GII)')
 
-@app.route('/resources')
+@app.route('/data')
 def resources():
-  return render_template('resources.html', title='Resources')
+  return render_template('data.html', title='Data for 2013-2017')
 
 # This route displays the page with the three scatter plots of hdi, gii and gdp vs %Urbanized
 # and the bubbl eplot of hdi, gii and gdp
@@ -135,13 +135,18 @@ def show_safe_water_gii_plot_data():
 
   df = pd.DataFrame().from_records(data, columns=['country', 'water_stress','gii'])
   df = pd.DataFrame().from_records(data,columns=['country', 'water_stress','gii'])
+  data = conn.execute('SELECT country, perc_safe_water, gii FROM Aquastat\
+    WHERE perc_safe_water IS NOT NULL and gii IS NOT NULL').fetchall()
+  df = pd.DataFrame().from_records(data,columns=['country', 'perc_safe_water','gii'])
   df2 = df.groupby('country').mean().reset_index()
   country = df2['country'].tolist()
-  water_stress = df2['water_stress'].tolist()
+  perc_safe_water = df2['perc_safe_water'].tolist()
   gii = df2['gii'].tolist()
   safe_water_data = {
     'country' : country,
     'water_stress' : water_stress,
+    'country': country,
+    'perc_safe_water' : perc_safe_water,
     'gii' : gii
   }
   
@@ -175,5 +180,79 @@ def safe_water_gii_plot():
 def hdi_gii_plot():  
   return render_template('hdi-gii-plot.html', title='GII versus HDI')  
 
+
+# This route gets the data for the summary table
+@app.route('/summary-table-data')
+def show_summary_table():
+    query_statement = "SELECT country, year_bucket, total_pop, gdp_per_cap, hdi, gii, \
+                    round(((urban_pop/total_pop)*100), 2) urbanized \
+                    FROM Aquastat \
+                    WHERE mid_year = 2015 \
+                    ORDER BY urbanized desc"
+
+    results = session.connection().execute(query_statement)
+    
+    summary_data = []
+
+    # Loop through the results and create a dict of arrays for this year bucket
+    for result in results:
+      rowdict = {
+        "country": result[0],
+        "year_bucket": result[1],
+        "total_pop": result[2],
+        "gdp": result[3],
+        "hdi": result[4],
+        "gii": result[5],
+        "urbanized": result[6]
+      }
+      summary_data.append(rowdict)
+
+    return jsonify(summary_data)
+
+@app.route("/map")
+def displaymap():
+    return render_template("summary_map.html",title='Summary Map')
+
+@app.route("/summarymap/<defaultTopic>")
+def map(defaultTopic):
+    years = [2000, 2005, 2010, 2015]
+    
+    map_dict={}
+
+    for year in years:
+
+        query_statement = "SELECT country,cn_code, `year bucket`," + defaultTopic + " \
+                        FROM Data \
+                        WHERE `mid year` = " + str(year) + "\
+                        AND cn_code IS NOT NULL AND "+ defaultTopic + " IS NOT NULL\
+                        ORDER BY country"
+
+        results = session.connection().execute(query_statement)
+        
+        
+        countries = []
+        country_code =[]
+        year_bucket =[]
+        value = []
+        
+        for result in results:
+            countries.append(result[0])
+            country_code.append(result[1])
+            year_bucket.append(result[2])
+            value.append(result[3])
+            
+        year_dict={
+            "country":countries,
+            "country_code":country_code,
+            "year_bucket":year_bucket,
+            "value":value,
+            
+            
+        }
+        map_dict["year"+str(year)] = year_dict
+    return jsonify(map_dict)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
+
