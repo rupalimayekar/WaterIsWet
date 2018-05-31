@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" language="en-US">
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Water Usage Worldwide</title>
+    {% endif %}
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.2/bootstrap-slider.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.2/css/bootstrap-slider.min.css"></style>
+    
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+    <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+    
+</head>
+
+<body>
+    <style>
+</style>
+
+    <div class="jumbotron" align="center">
+        <h1>Summary Map</h1>
+            <p class="lead">
+                <button id="hdi" >Update HDI Data</button>
+                <button id="pop">Population Density</button>
+                <button id="gdp">GDP</button>
+                <button id="gii">Gender InEquality Index</button>
+            <!-- <div class="dropdown">
+                    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Select Topic
+                        <select id="selDataset" onchange="dropdownChanged(this.value)"></select>
+                    </button>
+                </div> -->
+        </p>   
+        <div id="summary_map"></div>
+        <div class="slidecontainer">
+            <input id="yearRange" type="text" data-slider-ticks="[2000,2005,2010,2015]" data-slider-ticks-snap-bounds="2" data-slider-ticks-labels="[2000,2005,2010,2015]">
+            <br>
+            <span id="yearRangelabel">Current Year: <span id="sliderValue">2000</span></span>
+            <br><br>
+            
+        </div>        
+            
+    </div>
+    <!-- <script src="../static/summary_map.js" type="text/javascript"></script>></script> -->
+</body>
+<script>
+    
+// Managing Slider - Refer to Slider for Bootstrap (bootstrap-slider.js)
+    var $slider = new Slider("#yearRange", {
+        ticks:[2000,2005,2010,2015],
+        ticks_labels:["2000","2005","2010","2015"],
+        ticks_snap_bounds:2        
+        });
+
+    $slider.on("slideStop",function(sliderValue){
+        document.getElementById("sliderValue").textContent = sliderValue;
+        var updateYear = "year"+sliderValue;
+        console.log("UpdateYear:"+updateYear)
+        drawMap(updateYear);
+        defaultYear=updateYear;
+        console.log("Default Update To:"+defaultYear);
+    });  
+    
+    
+    // Set Default Topic and Years
+    var years = [2000,2005,2010,2015];
+    var defaultYear = "year"+years[0];
+    var defaultTopic = "gii";
+    var map = document.getElementById("summary_map"); 
+        
+
+    // Draw Map
+    function drawMap(defaultYear) {d3.json('/summarymap',function(error,response){
+        if (error) throw error;
+        var code = response[defaultYear]['country_code'];
+        var value = response[defaultYear][defaultTopic];
+        var data =[];
+        for (i=0;i<code.length;i++) {
+            data.push({"code":code[i],"value":value[i]})}
+        console.log(data);
+
+        var topicMap = Highcharts.mapChart('summary_map',{
+            chart:{map:'custom/world',borderWidth:1},
+            title:{text:defaultTopic},            
+            // exporting:{sourceWidth:600,sourceHeight:500},
+            legend: {
+                layout: 'horizontal',
+                borderWidth: 0,
+                backgroundColor: 'rgba(255,255,255,0.85)',
+                floating: true,
+                verticalAlign: 'top',
+                y: 25
+            },
+            mapNavigation: {
+                enabled: true
+            },
+            colorAxis: {
+                min: 0.1,
+                max:1,
+                type: 'logarithmic'
+                // minColor: '#001622',
+                // maxColor: '#000022',
+                // stops: [
+                //     [0, '#001622'],
+                //     [0.67, '#EEEEFF'],
+                //     [1, '#000022']
+                // ]
+            },
+            series: [{
+                animation: {
+                    duration: 1000
+                },
+                data: data,
+                joinBy: ['iso-a2', 'code'],
+                dataLabels: {
+                    enabled: true,
+                    color: '#FFFFFF',
+                    format: '{point.code}'
+                },
+                name: defaultTopic,
+                tooltip: {pointFormat: '{point.code}: {point.value}/km²'}
+            }]
+        })
+        // manage topic change buttons
+        // var $hdiButton = document.getElementById("hdiupdate");
+     
+        
+        // $hdiButton.addEventListener("click", function () {            
+        //     // topicMap.destroy();
+        //     var updateCode= [];
+        //     var updateValue =[];
+        //     var updateCode = response[defaultYear]['country_code'];
+        //     var updateValue = response[defaultYear]['hdi'];
+        //     var hdiData =[];
+        //     for (i=0;i<updateCode.length;i++) {
+        //         hdiData.push({"updateCode":updateCode[i],"hdi":updateValue[i]})
+            
+        //     }
+        //     console.log(hdiData);
+        //     topicMap.setTitle({text: 'HDI'});
+        //     // topicMap.setColorAxis({min: 1,max:1000,type:'logarithmic'});
+        //     topicMap.series[0].setData(hdiData,true);        
+        // })
+    })
+    }
+    drawMap(defaultYear);
+    // Update Map when Population Density is Clicked
+    var $popdensity=document.getElementById("pop");
+    $popdensity.addEventListener("click",function () {
+        defaultTopic="pop_density";
+        drawMap(defaultYear);
+        console.log("Default Topic Updated to:"+ defaultTopic);
+    })
+
+    // Update Map when HDI is Clicked
+    var $hdi = document.getElementById("hdi");
+    $hdi.addEventListener("click",function() {
+        defaultTopic="hdi";
+        drawMap(defaultYear);
+        console.log("Default Topic Updated to:"+defaultTopic);
+    })
+
+    // Update Map when GDP is Clicked
+    var $gdp = document.getElementById("gdp");
+    $gdp.addEventListener("click",function() {
+        defaultTopic="gdp";
+        drawMap(defaultYear);
+        console.log("Default Topic Updated to:"+defaultTopic);
+    })
+
+    // Update Map when GII is Clicked
+    var $gii = document.getElementById("gii");
+    $gii.addEventListener("click",function() {
+        defaultTopic="gii";
+        drawMap(defaultYear);
+        console.log("Default Topic Updated to:"+defaultTopic);
+    })
+
+//     function filterYears(year) {
+//         var lookupYear = "year"+year;
+//         d3.json('/summarymap',function(error,response) {
+//             if (error) throw error;
+//             var test_code = response[defaultYear]['country_code'];
+//             var test_value = response[defaultYear]['gii'];
+//             var test_data = [];
+//             for (i=0;i<test_code.length;i++) {
+//                 test_data.push({"code":test_code[i],"value":test_value[i]})
+//                 } 
+//             // console.log(test_data);
+//         })}  
+    
+//     filterYears(2000); 
+
+// Populate Dropdown Menu
+    // function populateDropdown() {
+    // var $selDataset=document.getElementById("selDataset");
+    // d3.json("/dropdown", function(error, response) {
+    // if (error) return console.warn(error);
+    // for (r=0; r<response.length; r++) {
+    //     name=response[r];
+    //     var $option = document.createElement("option");
+    //     $option.innerHTML = name;
+    //     $option.setAttribute = ("value",response[r]);
+    //     $selDataset.appendChild($option); 
+        
+    //     };
+    // })}
+    // populateDropdown();
+
+    
+      
+
+    // function dropdownChanged(updateTopic) {
+    //     // topicMap.destroy();
+        
+    //     d3.json("/summarymap", function(error,response) {
+    //         if (error) throw error;
+    //         var updateCode=[];
+    //         var updateValue=[];
+    //         var updateData =[];
+    //         var updateCode = response[defaultYear]['country_code'];
+    //         var updateValue = response[defaultYear][updateTopic];            
+    //         for (i=0;i<updateCode.length;i++) {
+    //             updateData.push({"updateCode":updateCode[i],"updateValue":updateValue[i]})
+    //         }
+    //         console.log(updateData);        
+
+    //         var topicMap = Highcharts.mapChart('summary_map',{
+    //             chart:{map:'custom/world',borderWidth:1},
+    //             title:{text:updateTopic},
+    //             exporting:{sourceWidth:600,sourceHeight:500},
+    //             legend: {
+    //                 layout: 'horizontal',
+    //                 borderWidth: 0,
+    //                 backgroundColor: 'rgba(255,255,255,0.85)',
+    //                 floating: true,
+    //                 verticalAlign: 'top',
+    //                 y: 25
+    //             },
+
+    //             mapNavigation: {
+    //                 enabled: true
+    //             },
+
+    //             colorAxis: {
+    //                 min: 1,
+    //                 type: 'logarithmic',
+    //                 minColor: '#001622',
+    //                 maxColor: '#000022',
+    //                 stops: [
+    //                     [0, '#001622'],
+    //                     [0.67, '#EEEEFF'],
+    //                     [1, '#000022']
+    //                 ]
+    //             },
+
+    //             series: [{
+    //                 animation: {
+    //                     duration: 1000
+    //                 },
+    //                 data: updateData,
+    //                 joinBy: ['iso-a2', 'code'],
+    //                 dataLabels: {
+    //                     enabled: true,
+    //                     color: '#FFFFFF',
+    //                     format: '{point.code}'
+    //                 },
+    //                 name: updateTopic,
+    //                 tooltip: {
+    //                     pointFormat: '{point.code}: {point.value}/km²'
+    //                 }
+    //             }]
+    //         })
+
+            
+    //         // topicMap.series[0].setData(updateData);
+                    
+    //         })
+    // }
+        // console.log("option change works");
+    
+  
+
+
+
+</script>
+
+</html>
