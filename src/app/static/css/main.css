@@ -1,0 +1,18 @@
+.section {
+    display: block;
+    padding: 3rem 1.5rem;
+}
+
+
+.footer {
+    padding: 3rem 1.5rem 6rem;
+}
+
+@media screen and (min-width: 1088px) {
+    .section.is-medium {
+        padding: 9rem 1.5rem;
+    }
+    .section.is-large {
+        padding: 18rem 1.5rem;
+    }
+}

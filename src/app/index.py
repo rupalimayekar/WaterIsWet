@@ -14,7 +14,7 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 # db_uri = os.getenv("DATABASE_URI", "///../../data/data.sqlite")
-db_uri ="sqlite:///../../data/data.sqlite"
+db_uri ="sqlite:///../../data/Aquastat.sqlite"
 engine = create_engine(db_uri)
 
 # reflect an existing database into a new model
@@ -34,21 +34,30 @@ session = Session(engine)
 def home():
   return render_template('index.html', title='Home')
 
+@app.route('/glossary')
+def glossary():
+  return render_template('glossary.html', title='Glossary')
+
+
+@app.route('/thesis')
+def thesis():
+  return render_template('thesis.html', title='Thesis')
+
 @app.route('/gdp')
 def gdp():
-  return render_template('gdp.html', title='Gross Domestic Product')
+  return render_template('gdp.html', title='Gross Domestic Product (GDP)')
 
-@app.route('/irrigation')
+@app.route('/hdi')
 def irrigation():
-  return render_template('irrigation.html', title='Irrigation')
+  return render_template('hdi.html', title='Human Development Index (HDI)')
 
-@app.route('/land')
+@app.route('/gii')
 def land():
-  return render_template('land_use.html', title='Land')
+  return render_template('gii.html', title='Gender Inequality Index (GII)')
 
-@app.route('/resources')
+@app.route('/data')
 def resources():
-  return render_template('resources.html', title='Resources')
+  return render_template('data.html', title='Data for 2013-2017')
 
 # This route displays the page with the three scatter plots of hdi, gii and gdp vs %Urbanized
 # and the bubbl eplot of hdi, gii and gdp
@@ -71,10 +80,10 @@ def show_hdi_plot_data():
   # query the data for each year bucket
   for year in years:
 
-    query_statement = "SELECT country, `year bucket`, gdp_per_cap, hdi, gii, \
+    query_statement = "SELECT country, year_bucket, gdp_per_cap, hdi, gii, \
                       round(((urban_pop/total_pop)*100), 2) urbanized \
-                      FROM Data \
-                      WHERE `mid year` = " + str(year) + "\
+                      FROM Aquastat \
+                      WHERE mid_year = " + str(year) + "\
                       AND hdi IS NOT NULL AND gdp_per_cap IS NOT NULL AND gii IS NOT NULL \
                       ORDER BY country"
 
@@ -110,5 +119,84 @@ def show_hdi_plot_data():
 
   return jsonify(hdi_dict)
 
+#This route loads the data for the safe water versus gii plot
+@app.route('/safe-water-gii-data')
+def show_safe_water_gii_plot_data():
+  #grabbing data from sql
+
+  conn = engine.connect()
+
+  data = conn.execute('SELECT country, perc_safe_water, gii FROM Aquastat\
+    WHERE perc_safe_water IS NOT NULL and gii IS NOT NULL').fetchall()
+  df = pd.DataFrame().from_records(data,columns=['country', 'perc_safe_water','gii'])
+  df2 = df.groupby('country').mean().reset_index()
+  country = df2['country'].tolist()
+  perc_safe_water = df2['perc_safe_water'].tolist()
+  gii = df2['gii'].tolist()
+  safe_water_data = {
+    'country': country,
+    'perc_safe_water' : perc_safe_water,
+    'gii' : gii
+  }
+  return jsonify(safe_water_data)
+
+@app.route('/hdi-gii-data')
+def show_hdi_gii_plot_data():
+  #grabbing data from sql
+
+  conn = engine.connect()
+
+  data = conn.execute('SELECT country, hdi, gii FROM Aquastat\
+    WHERE hdi IS NOT NULL and gii IS NOT NULL').fetchall()
+  df = pd.DataFrame().from_records(data,columns=['country', 'hdi','gii'])
+  df2 = df.groupby('country').mean().reset_index()
+  country = df2['country'].tolist()
+  water_stress = df2['hdi'].tolist()
+  gii = df2['gii'].tolist()
+  hdi_data = {
+    'country': country,
+    'hdi' : water_stress,
+    'gii' : gii
+  }
+  return jsonify(hdi_data)
+
+@app.route('/safe-water-gii-plot')
+def safe_water_gii_plot():  
+  return render_template('safe-water-gii-plot.html', title='GII versus percent availability of safe water')
+
+@app.route('/hdi-gii-plot')
+def hdi_gii_plot():  
+  return render_template('hdi-gii-plot.html', title='GII versus HDI')  
+
+
+# This route gets the data for the summary table
+@app.route('/summary-table-data')
+def show_summary_table():
+    query_statement = "SELECT country, year_bucket, total_pop, gdp_per_cap, hdi, gii, \
+                    round(((urban_pop/total_pop)*100), 2) urbanized \
+                    FROM Aquastat \
+                    WHERE mid_year = 2015 \
+                    ORDER BY urbanized desc"
+
+    results = session.connection().execute(query_statement)
+    
+    summary_data = []
+
+    # Loop through the results and create a dict of arrays for this year bucket
+    for result in results:
+      rowdict = {
+        "country": result[0],
+        "year_bucket": result[1],
+        "total_pop": result[2],
+        "gdp": result[3],
+        "hdi": result[4],
+        "gii": result[5],
+        "urbanized": result[6]
+      }
+      summary_data.append(rowdict)
+
+    return jsonify(summary_data)
+
 if __name__ == "__main__":
     app.run(debug=True)
+
