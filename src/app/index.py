@@ -55,7 +55,7 @@ def land():
 
 @app.route('/data')
 def resources():
-  return render_template('data.html', title='Data for 2013-2017')
+  return render_template('data.html', title='Water is Wet - Data by Year Range')
 
 # This route displays the page with the three scatter plots of hdi, gii and gdp vs %Urbanized
 # and the bubbl eplot of hdi, gii and gdp
