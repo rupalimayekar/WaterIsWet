@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" language="en-US">
+  {% if title %}
+  <title>{{ title }}</title>
+  {% else %}
+  <title>Population based HDI</title>
+  {% endif %}
+
+  <!-- Bootstrap  CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      
+  <!-- d3 JavaScript -->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+
+  <!-- Highcharts -->
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/highcharts-more.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+  <!-- Our CSS -->
+  <!-- <link rel="stylesheet" type="text/css" href="styles/styles.css"> -->
+
+</head>
+
+<body>
+  <h2 class="text-center">Compairing GDP against HDI and GII</h1>
+  <br>
+  <h3 class="text-center">Scatter Plot of GDP against GII</h3>
+  <br><br>
+  <div id="gdp-gii-container" style="height: 400px; min-width: 310px; max-width: 600px; margin: 0 auto"></div>
+  <br><br>
+    <h3 class="text-center">Scatter Plot of GDP against HDI</h3>
+  <br><br>
+  <div id="gdp-hdi-container" style="height: 400px; min-width: 310px; max-width: 600px; margin: 0 auto"></div>
+  <br><br>
+</body>
+
+<!-- Dark Theme for Highcharts-->
+<script src="../static/js/dark-unica-theme.js"></script>
+
+<!-- Our javascript for populating the charts -->
+<script src="../static/js/gdp-hdi-gii-plots.js"></script>
+
+</html>

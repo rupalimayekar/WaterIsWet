@@ -14,7 +14,8 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 # db_uri = os.getenv("DATABASE_URI", "///../../data/data.sqlite")
-db_uri ="sqlite:///../../data/Aquastat.sqlite"
+db_uri = "sqlite:///../../data/data.sqlite"
+db_uri = "sqlite:///../../data/Aquastat.sqlite"
 engine = create_engine(db_uri)
 
 # reflect an existing database into a new model
@@ -62,6 +63,9 @@ def resources():
 def show_hdi_plots():  
   return render_template('pop-hdi-gdp-plots.html', title='Population based HDI')
 
+@app.route('/gdp-hdi-gii')
+def show_gdp_plots():
+  return render_template('gdp-hdi-gii-plots.html', title='GDP vs GDP and GII')
 
 # This route gets the data for the hdi, gii and gdp vs % urbanized scatter plots
 # and the bubble plot comparing hdi,gii and gdp
@@ -83,7 +87,7 @@ def show_hdi_plot_data():
                       WHERE mid_year = " + str(year) + "\
                       AND hdi IS NOT NULL AND gdp_per_cap IS NOT NULL AND gii IS NOT NULL \
                       ORDER BY country"
-
+  
     results = session.connection().execute(query_statement)
     
     countries = []
@@ -110,7 +114,7 @@ def show_hdi_plot_data():
     }
 
     # Add each year dict into the main dict
-    hdi_dict["year"+str(year)] = year_dict
+    hdi_dict["year" + str(year)] = year_dict
 
   # end for loop
 
@@ -123,6 +127,11 @@ def show_safe_water_gii_plot_data():
 
   conn = engine.connect()
 
+  data = conn.execute('SELECT country, water_stress, gii FROM Aquastat\
+    WHERE water_stress IS NOT NULL and gii IS NOT NULL').fetchall()
+
+  df = pd.DataFrame().from_records(data, columns=['country', 'water_stress','gii'])
+  df = pd.DataFrame().from_records(data,columns=['country', 'water_stress','gii'])
   data = conn.execute('SELECT country, perc_safe_water, gii FROM Aquastat\
     WHERE perc_safe_water IS NOT NULL and gii IS NOT NULL').fetchall()
   df = pd.DataFrame().from_records(data,columns=['country', 'perc_safe_water','gii'])
@@ -131,10 +140,13 @@ def show_safe_water_gii_plot_data():
   perc_safe_water = df2['perc_safe_water'].tolist()
   gii = df2['gii'].tolist()
   safe_water_data = {
+    'country' : country,
+    'water_stress' : water_stress,
     'country': country,
     'perc_safe_water' : perc_safe_water,
     'gii' : gii
   }
+  
   return jsonify(safe_water_data)
 
 @app.route('/hdi-gii-data')
@@ -215,50 +227,45 @@ def show_summary_table():
 def displaymap():
     return render_template("summary_map.html",title='Summary Map')
 
-@app.route("/summarymap")
-def hdi_map():
+@app.route("/summarymap/<defaultTopic>")
+def map(defaultTopic):
     years = [2000, 2005, 2010, 2015]
+    
     map_dict={}
 
     for year in years:
 
-        query_statement = "SELECT country,cn_code, `year_bucket`, gdp_per_cap, hdi, gii, \
-                        pop_density \
-                        FROM Aquastat \
-                        WHERE `mid_year` = " + str(year) + "\
-                        AND cn_code IS NOT NULL AND hdi IS NOT NULL AND gdp_per_cap IS NOT NULL AND gii IS NOT NULL \
+        query_statement = "SELECT country,cn_code, `year bucket`," + defaultTopic + " \
+                        FROM Data \
+                        WHERE `mid year` = " + str(year) + "\
+                        AND cn_code IS NOT NULL AND "+ defaultTopic + " IS NOT NULL\
                         ORDER BY country"
 
         results = session.connection().execute(query_statement)
         
+        
         countries = []
         country_code =[]
         year_bucket =[]
-        gdp =[]
-        gii=[]
-        hdi=[]
-        pop_density=[]
+        value = []
         
         for result in results:
             countries.append(result[0])
             country_code.append(result[1])
             year_bucket.append(result[2])
-            gdp.append(result[3])
-            hdi.append(result[4])
-            gii.append(result[5])
-            pop_density.append(result[6])
+            value.append(result[3])
+            
         year_dict={
             "country":countries,
             "country_code":country_code,
             "year_bucket":year_bucket,
-            "gdp":gdp,
-            "hdi":hdi,
-            "gii":gii,
-            "pop_density":pop_density
+            "value":value,
+            
             
         }
         map_dict["year"+str(year)] = year_dict
     return jsonify(map_dict)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
