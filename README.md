@@ -54,11 +54,9 @@ The data for this Analysis was downloaded from the FAO's [AQUASTAT Database](htt
     * Do countries with a higher Flood Occurrence Indicator have a higher Prevelance of undernourishment?
 
 ## Data Visualizations
-The data visualizations are interactive and best experienced online:
-    * GDP (link here)
-    * Irrigation (link here)
-    * Land Use (link here)
-    * Resources (link here)
+Explore an interactive map and visualize the relationship bewteen HDI, GDP, GII and Urban Population.
+The data visualizations are interactive and best experienced online: https://waterstats.herokuapp.com
+
 
 ## You can't cross the sea merely by standing and staring at the water: Technical Considerations
 
