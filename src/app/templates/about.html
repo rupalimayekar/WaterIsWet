@@ -1,0 +1,135 @@
+ {% extends "layout.html" %}
+ {% set active_page = "about" %}
+
+{% block content %}
+<div class="container">
+    <!-- Creates the Overall Grid -->
+    <div class="row">
+        <div class="col-md-8">
+            <div class="section">
+                <h4>FAO and AQUASTAT</h4>
+                <p>
+                        <a href="http://www.fao.org/home/en/" target="_blank">The Food and Agriculture Organization (FAO)</a> is specialized agency of the United Nations that leads international efforts to defeat hunger. 
+                    <br><br>
+                    FAO's three main goals are: 
+                    <ul>
+                        <li>the eradication of hunger, food insecurity and malnutrition. </li>
+                        <li>the elimination of poverty and the driving forward of economic and social progress for all. </li>
+                        <li>the sustainable management and utilization of natural resources, including land, water, air, climate and genetic resources for the benefit of present and future generations.</li>
+                    </ul>
+                    <br>
+                    <a href="http://www.fao.org/nr/water/aquastat/main/index.stm" target="_blank">AQUASTAT</a> started, with the aim to contribute to FAO's goals through the collection, analysis and dissemination of information related to water resources, water uses and agricultural water management, with an emphasis on countries in Africa, Asia, Latin America, and the Caribbean.
+                </p>
+            </div>
+            <div class="section">
+                <h4>Water is Wet</h4>
+                <p>
+                    The amount of information provided by AQUASTAT got us intrigued and got our imagination run wild. 
+                    However this data was very overwhelming at first and so we narrowed down our research to those related to the water resources, urbanization and a few others.
+                    Thus was born, "Water is Wet". We looked at these parameters and tried to explore their relationship with the development indicators like 
+                    Human Development Indicator (HDI), Gross Domestic Product (GDP) and "Gender Inequality Index (GII)"
+                </p>
+            </div>
+            <div class="section">
+                <h4>Thesis</h4>
+                <p>We believed the following relationships and dependencies exist and through our analysis proposed to present the relationships by exploring the data provided by <a href="http://www.fao.org/nr/water/aquastat/main/index.stm" target="_blank">AQUASTAT</a>.
+                </p>
+                <ul>
+                    <li>
+                        <p>The development of a country depends on its water resources (rainfall, external resources, internal resources)</p>
+                    </li>
+                    <li>
+                        <p>The development of a country depends on the rural population and production from agriculture (crops and livestock).</p>
+                    </li>
+                    <li>
+                        <p>The agricultural production of a country is realted to its water resources and also the amount of land cultivated.</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="section">
+                <h4>Questions:</h4>
+                <p>We proposed to answer the following questions for this project. For the definition of the terms and indicators, please refer to the <a href="#/glosary">Glossary</a> page.</p>
+                <ol>
+                    <li>
+                        <p>Is GDP realted to population? Do more densly populated countries have higher GDP index? Do countries with higher rural population have a higher GDP?</p>
+                    </li>
+                    <li>
+                        <p>Is GDP related to the % of Total Area Cultivated? Do countries with more cultivated area have a higher GDP per capita?</p>
+                    </li>
+                    <li>
+                        <p>Is the HDI directly related to the urban population of the country? Do more "Urbanized" countries have higher HDI? Similarly do more urbanized countries have a lower GII?</p>
+                    </li>
+                    <li>
+                        <p>Do countries with higher GDP have a higher HDI? Similarty do countries with higher GDP have a lower GII?</p>
+                    </li>
+                    <li class="mb-3">How is the HDI of a country related to its water resources?
+                        <ul>
+                            <li>Do countries with a higher NRI have a higher HDI?</li>
+                            <li>Do countries with a lower Dependency Ratio have a higher HDI?</li>
+                            <li>Do countries with a higher Water Stress Indicator have a lower HDI?</li>
+                            <li>Do countries with a higher Flood Occurrence Indicator have a lower HDI?</li>
+                        </ul>
+                    </li>
+                    <li class="mb-3">How is the GDP of a country related to its water resources?
+                        <ul>
+                            <li>Do countries with a higher NRI have a higher GDP?</li>
+                            <li>Do countries with a lower Dependency Ratio have a higher GDP?</li>
+                            <li>Do countries with a higher Water Stress Indicator have a lower GDP?</li>
+                            <li>Do countries with a higher Flood Occurrence Indicator have a lower GDP?</li>
+                        </ul>
+                    </li>
+                    <li class="mb-3">How is the Prevelance of undernourishment related to the water resources for a country?
+                    <ul>
+                        <li>Do countries with a lower NRI have higher Prevelance of undernourishment?</li>
+                        <li>Do countries with a higher Dependency Ratio have higher Prevelance of undernourishment?</li>
+                        <li>Do countries with a higher Water Stress Indicator have a higher Prevelance of undernourishment? </li>
+                        <li>Do countries with a higher Flood Occurrence Indicator have a higher Prevelance of undernourishment?</li>
+                    </ul>
+                </li>
+                </ol>
+            </div>
+            <div class="section">
+                <h4>Summary Statistics</h4>
+                <ol>
+                    <li>
+                        <p>The map on the home page is a representation of how various countries compare against each other based on certain development indicators like HDI, GDP, GII, population density, etc</p>
+                    </li>
+                    <li>
+                        <p>We also have a tabular representation of the data that can be sorted by columns to easity determine the top n and bottom n countries for the listed parameters.</p>
+                    </li>
+                </ol>
+            </div>
+            <div class="section">
+                    <h4>AQUASTAT Data</h4>
+                    The data for this Analysis has been downloaded from the FAO's <a href="http://www.fao.org/nr/water/aquastat/data/query/index.html?lang=en" target="_blank"> AQUASTAT Database</a> as csv files which was imported into our database. 
+                    The Aquastat database provides values of cerain parameters realted to land, population, water, development and agriculture over a few decades.
+            </div>
+            <div class="section">
+                <h4>Technology used</h4>
+                <p>The project is a Flask powered website that shows our analysis under the Data Visualization navigation menu. 
+                    The Website is developed using the following technology: 
+                    <ul>
+                        <li>Python for the Flask application server and data retrieval</li>
+                        <li>HTML/CSS using the Bootstrap framework for presentation</li>
+                        <li>Highcharts Javascript library for the visualizations.</li>
+                        <li>SQLite database to store and retrieve all the required data for the project.</li>
+                    </ul>
+            </div>
+            <div class="section">
+                    <h4>Findings</h4>
+                    <p>Through our Analysis, surprisingly, we did not find much of a correlation between the water resources and development of a country.
+                        The HDI or GDP or Prevelance of undernourishment doesn't seem to have a direct dependency on National Rainfall Indicator, water dependency on other countries, 
+                        Flood Occurrence, Water Stress Indicator or access to safe drinking water.
+                        <br><br>
+                        However we did find some interesting correlation between these parameters and the Gender Inequality Index (GII) and urbanization of countries. 
+                        Take a look at our Data Visualizations for details on what we found.
+
+                        
+                </div>
+            </div>
+        <div class="col-md-4">
+            
+        </div>
+    </div>
+</div>
+{% endblock %}
