@@ -6,34 +6,34 @@
 {% block content %}
     <div class="container mt-3">
         <div class="jumbotron">
-            <h1 class="display-3">Water is Wet</h1>
-            <p class="lead">An Exploratory Data Analysis project to see what factors affect the development index of countries around the world</p>
+            <h1 class="display-4">Water is Wet</h1>
+            <p class="lead">An Exploratory Data Analysis project to see what factors affect the development indices of countries around the world.</p>
             <hr class="my-4">
-            <p>Comparing parameters related to water resources, agriculture, land and population over a time period against some development indicators for countries like Human Development Indicator (HDI), Gross Domestic Product (GDP), Gender Inequality Index (GII) and Prevelance of Undernourishment.</p>
+            <p>Comparing parameters related to water resources, agriculture, land and population over a time period against some standard development indicators like Human Development Indicator (HDI), Gross Domestic Product (GDP) and Gender Inequality Index (GII)
             <p class="lead">
-                <a class="btn btn-primary btn-lg" href="/thesis" role="button">Learn more</a>
+                <a class="btn btn-primary btn-sm" href="/about" role="button">Learn more</a>
             </p>
         </div>
         <div class="row">
             <div class="col-md-12">
-            <div class="jumbotron" align="center">
-                <h1>Summary Map</h1>
+            <div align="center">
                     <p class="lead">
-                        <button id="hdi" >HDI</button>
-                        <button id="pop">Pop. Density</button>
-                        <button id="gdp">GDP</button>
-                        <button id="gii">GII</button>
-                        <button id="safewater">Water</button>
+                        <button class="btn btn-secondary btn-sm" id="hdi" >HDI</button>
+                        <button class="btn btn-secondary btn-sm" id="pop">Pop. Density</button>
+                        <button class="btn btn-secondary btn-sm" id="gdp">GDP</button>
+                        <button class="btn btn-secondary btn-sm" id="gii">GII</button>
+                        <button class="btn btn-secondary btn-sm" id="safewater">Water</button>
                 </p>   
                 <div id="summary_map"></div>
                 <div class="slidecontainer">
-                    <input id="yearRange" type="text" data-slider-ticks="[2000,2005,2010,2015]" data-slider-ticks-snap-bounds="2" data-slider-ticks-labels="[2000,2005,2010,2015]">
+                    <input id="yearRange" type="text" data-slider-ticks="[2000,2005,2010,2015]" data-slider-ticks-snap-bounds="2" data-slider-ticks-labels="[2000,2005,2010,2015]"data-slider-value="2015">
                     <br>
-                    <span id="yearRangelabel">Year Displayed: <span id="sliderValue">2000</span></span>
+                    <span id="yearRangelabel">Year Displayed: <span id="sliderValue">2015</span></span>
                     <br><br>
                 </div>        
             </div>
         </div></div>
+        <br><br>
         <div class="row">
             <div class="row">
                 <div class="col-sm-6 col-md-3">
@@ -41,42 +41,42 @@
                         <div class="card-header">HDI vs % Urban Population</div>
                         <div class="card-body">
                             <img style="height: 100%; width: 100%; display: block;" src="static/images/hdi_plot.png" alt="Scatter Plot: HDI vs % Urban Population">
-                            <p class="card-text">Plot that visualizes relationship of HDI and % of urban population of a country...</p>
-                            <button type="button" class="btn btn-secondary">
+                            <p class="card-text">Plot that visualizes the relationship of HDI and % of urban population of a country...</p>
+                            <button type="button" class="btn btn-secondary btn-sm">
                                 <a href="/hdi" style="color:inherit">See more</a></button>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">
                     <div class="card text-white bg-primary mb-3">
-                        <div class="card-header">GDP vs % Urban Population</div>
+                        <div class="card-header">GDP per Capita vs GII</div>
                         <div class="card-body">
                             <img style="height: 100%; width: 100%; display: block;" src="static/images/gdp_plot.png" alt="Scatter Plot: GDP vs % Urban Population" />
-                            <p class="card-text">Plot that visualizes the relationship of Gross Domestic Product and % of urban population of a country...</p>
-                            <button type="button" class="btn btn-secondary">
-                                <a href="/gdp" style="color:inherit">See more</a></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="card text-white bg-primary mb-3">
-                        <div class="card-header">GII vs % Urban Population</div>
-                        <div class="card-body">
-                            <img style="height: 100%; width: 100%; display: block;" src="static/images/gii_plot.png" alt="Scatter Plot: GII vs % Urban Population">
-                            <p class="card-text">Plot that visualizes the relationship of the Gender Inequality Index and % of urban population of a country.</p>
-                            <button type="button" class="btn btn-secondary">
+                            <p class="card-text">Plot that visualizes the relationship between Gender Inequality and...</p>
+                            <button type="button" class="btn btn-secondary btn-sm">
                                 <a href="/gii" style="color:inherit">See more</a></button>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">
                     <div class="card text-white bg-primary mb-3">
-                        <div class="card-header">Viz 4</div>
+                        <div class="card-header">GII vs Average % Safe Water</div>
                         <div class="card-body">
-                            <img style="height: 100%; width: 100%; display: block;" src="static/images/wateriswet.jpg" alt="Scatter Plot: Lattitude v. Cloudiness">
-                            <p class="card-text">Short Caption Goes Here</p>
-                            <button type="button" class="btn btn-secondary">
-                                <a href="/wind" style="color:inherit">Read more</a></button>
+                            <img style="height: 100%; width: 100%; display: block;" src="static/images/gii_plot.png" alt="Scatter Plot: GII vs % Urban Population">
+                            <p class="card-text">Plot that visualizes the relationship of the GII and % population...</p>
+                            <button type="button" class="btn btn-secondary btn-sm">
+                                <a href="/gii" style="color:inherit">See more</a></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="card text-white bg-primary mb-3">
+                        <div class="card-header">HDI, GDP and GII</div>
+                        <div class="card-body">
+                            <img style="height: 100%; width: 100%; display: block;" src="static/images/bubble_plot.png" alt="Interactive Map">
+                            <p class="card-text">Plot that visualizes the relationship of HDI, GII and GDP per Capita...</p>
+                            <button type="button" class="btn btn-secondary btn-sm">
+                                <a href="/hdi" style="color:inherit">See more</a></button>
                         </div>
                     </div>
                 </div>

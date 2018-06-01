@@ -305,7 +305,7 @@ d3.json('/safe-water-gii-data', function(error, response) {
     },
   
     title: {
-      text: 'GDP VS GII'
+      text: 'GDP per Capita VS GII'
     },
   
     subtitle: {

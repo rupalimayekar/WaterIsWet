@@ -35,9 +35,9 @@ def glossary():
   return render_template('glossary.html', title='Glossary')
 
 
-@app.route('/thesis')
+@app.route('/about')
 def thesis():
-  return render_template('thesis.html', title='Thesis')
+  return render_template('about.html', title='Water We Doing? - A Summary')
 
 @app.route('/gdp')
 def gdp():
@@ -117,6 +117,69 @@ def show_hdi_plot_data():
   # end for loop
 
   return jsonify(hdi_dict)
+
+# This route gets the data for the hdi, gii and gdp vs % urbanized scatter plots
+# and the bubble plot comparing hdi,gii and gdp
+@app.route('/gdp-water-data')
+def show_gdp_water_plot_data():
+  # The years by which the data is categorized. I know from my initial analyis that there
+  # is non null values for only these year buckets. That is why I query only these
+  years = [2000, 2010, 2015]
+
+  # This is the dictionary object that is finally returned
+  hdi_dict = {}
+
+  # query the data for each year bucket
+  for year in years:
+
+    query_statement = "SELECT country, year_bucket, perc_safe_water, water_stress, dependency_ratio, renew_water_per_cap,\
+                      gdp_per_cap, hdi, gii \
+                      FROM Aquastat \
+                      WHERE mid_year = " + str(year) + "\
+                      AND hdi IS NOT NULL AND gdp_per_cap IS NOT NULL AND gii IS NOT NULL \
+                      ORDER BY country"
+  
+    results = session.connection().execute(query_statement)
+    
+    countries = []
+    hdi = []
+    gii = []
+    gdp = []
+    safeWater = []
+    waterStress = []
+    depRatio = []
+    renewWater = []
+
+    # Loop through the results and create a dict of arrays for this year bucket
+    for result in results:
+      countries.append(result[0])
+      safeWater.append(result[2])
+      waterStress.append(result[3])
+      depRatio.append(result[4])
+      renewWater.append(result[5])
+      gdp.append(result[6])
+      hdi.append(result[7])
+      gii.append(result[8])
+
+    # Create a dictionary of values for each year
+    year_dict = {
+      "country": countries,
+      "safewater": safeWater,
+      "waterstress": waterStress,
+      "dependencyratio": depRatio,
+      "renewwater": renewWater,
+      "hdi": hdi,
+      "gii": gii,
+      "gdp": gdp,
+    }
+
+    # Add each year dict into the main dict
+    hdi_dict["year" + str(year)] = year_dict
+
+  # end for loop
+
+  return jsonify(hdi_dict)
+
 
 #This route loads the data for the safe water versus gii plot
 @app.route('/safe-water-gii-data')

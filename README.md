@@ -1,7 +1,7 @@
 # WaterIsWet
 Aquastat Data Analysis Summary
 
-![water is wet](../images/wateriswet.jpg)
+![water is wet](src/app/static/images/wateriswet.jpg)
 # Water We Doing?: A Summary
 
 "Water is Wet" is an Exploratory Data Analysis project to see what factors affect the development index of countries around the world. It aims to compare certain parameters related to water resources, agriculture, land and population over a time period against some development indicators for countries like Human Development Indicator (HDI), Gross Domestic Product (GDP), Gender Inequality Index (GII) and Prevelance of Undernourishment.
@@ -13,7 +13,7 @@ Aquastat Data Analysis Summary
 * Luke Pharr
 * Rupali Mayekar
 
-## Watery We Think About This?: Our hypothesis
+## Watery Think About This?: Our hypothesis
 We believe the following relationships and dependencies exist, and through our analysis propose to present the relationships by exploring the data provided by [The Food and Agriculture Organization of the United Nations](http://www.fao.org/home/en/) under their [AQUASTAT](http://www.fao.org/nr/water/aquastat/main/index.stm) project. 
 
 * The development of a country depends on its water resources (rainfall, external resources, internal resources)
@@ -54,13 +54,11 @@ The data for this Analysis was downloaded from the FAO's [AQUASTAT Database](htt
     * Do countries with a higher Flood Occurrence Indicator have a higher Prevelance of undernourishment?
 
 ## Data Visualizations
-The data visualizations are interactive and best experienced online:
-    * GDP (link here)
-    * Irrigation (link here)
-    * Land Use (link here)
-    * Resources (link here)
+Explore an interactive map and visualize the relationship bewteen HDI, GDP, GII and Urban Population.
+The data visualizations are interactive and best experienced online: https://waterstats.herokuapp.com
 
-## You can't cross the sear merly by standing and staring at the water: Technical Considerations
+
+## You can't cross the sea merely by standing and staring at the water: Technical Considerations
 
 The project resulted in a Flask powered website that shows the interative data visualizations. The website was developed using HTML/CSS and Javascript libraries and a responsive Bootstrap framework. 
 

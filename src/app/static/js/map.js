@@ -16,10 +16,10 @@
     
     
 // Set Default Topic, Default Year and Title Dictionary
-    var defaultYear = "year2000";
+    var defaultYear = "year2015";
     var defaultTopic = "gii";
-    var title_dict ={"gii":"Gender InEquality Index","hdi":"Human Development Index","pop_density":"Population Density","gdp_per_cap":"GDP Per Capita","perc_safe_water":"Percent Safe Water"};
-        
+    var title_dict = {"gii":"Gender Inequality Index","hdi":"Human Development Index","pop_density":"Population Density (inhab/km2)","gdp_per_cap":"GDP Per Capita ($USD/inhab)","perc_safe_water":"Access to Safe Drinking Water (% of Population)"};
+    var scaleType_dict = {"gii":"scalar","hdi":"scalar","perc_safe_water":"logarithmic","pop_density":"logarithmic","gdp_per_cap":"scalar"};
 
 // Draw Map Function
     function drawMap(defaultYear) {
@@ -29,6 +29,8 @@
         d3.json(query_url,function(error,response){
             if (error) console.log("Error Accessing URL");
             console.log(response);
+            var code =[];
+            var value =[];
             var code = response[defaultYear]['country_code'];
             var value = response[defaultYear]['value'];
             var min_value = Math.min.apply(Math,value);
@@ -36,7 +38,7 @@
             console.log("Max is:" + max_value);
             console.log("Min is:"+ min_value);
             var data =[];
-            for (i=0;i<code.length;i++) {data.push({"code":code[i],"value":value[i]})}            
+            for (i=0;i<code.length;i++) {data.push({"code":code[i],"value":value[i]});}            
 
             console.log(data);
 
@@ -49,8 +51,11 @@
                     borderWidth: 0,
                     backgroundColor: 'rgba(255,255,255,0.85)',
                     floating: true,
-                    verticalAlign: 'top',
-                    y: 25
+                    verticalAlign: 'bottom',
+                    align: 'left',
+                    y: 0,
+                    x: 25
+
                 },
                 mapNavigation: {
                     enabled: true
@@ -58,9 +63,8 @@
                 colorAxis: {
                     min: min_value,
                     max: max_value,
-                    type: 'logarithmic'
-                    // minColor: '#001622',
-                    // maxColor: '#000022'
+                    type: scaleType_dict[defaultTopic]
+        
                     
                 },
                 series: [{

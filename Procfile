@@ -1,0 +1,1 @@
+web: cd src/app/ && gunicorn index:app --log-file=-
