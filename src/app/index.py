@@ -35,9 +35,9 @@ def glossary():
   return render_template('glossary.html', title='Glossary')
 
 
-@app.route('/thesis')
+@app.route('/about')
 def thesis():
-  return render_template('thesis.html', title='Thesis')
+  return render_template('about.html', title='Background and Thesis')
 
 @app.route('/gdp')
 def gdp():
