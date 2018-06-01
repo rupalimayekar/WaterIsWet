@@ -37,7 +37,7 @@ def glossary():
 
 @app.route('/about')
 def thesis():
-  return render_template('about.html', title='Background and Thesis')
+  return render_template('about.html', title='Water We Doing? - A Summary')
 
 @app.route('/gdp')
 def gdp():
