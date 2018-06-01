@@ -15,6 +15,26 @@
             </p>
         </div>
         <div class="row">
+            <div class="col-md-12">
+            <div class="jumbotron" align="center">
+                <h1>Summary Map</h1>
+                    <p class="lead">
+                        <button id="hdi" >HDI</button>
+                        <button id="pop">Pop. Density</button>
+                        <button id="gdp">GDP</button>
+                        <button id="gii">GII</button>
+                        <button id="safewater">Water</button>
+                </p>   
+                <div id="summary_map"></div>
+                <div class="slidecontainer">
+                    <input id="yearRange" type="text" data-slider-ticks="[2000,2005,2010,2015]" data-slider-ticks-snap-bounds="2" data-slider-ticks-labels="[2000,2005,2010,2015]">
+                    <br>
+                    <span id="yearRangelabel">Year Displayed: <span id="sliderValue">2000</span></span>
+                    <br><br>
+                </div>        
+            </div>
+        </div></div>
+        <div class="row">
             <div class="row">
                 <div class="col-sm-6 col-md-3">
                     <div class="card text-white bg-primary mb-3">
@@ -67,5 +87,9 @@
             </div>
         </div>
     </div>
+
+<!-- Our javascript for populating the charts -->
+<script src="../static/js/map.js"></script>
+
 
 {% endblock %}

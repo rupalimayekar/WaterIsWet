@@ -1,250 +1,1 @@
-cn_code,cn_name
-"--","Other"
-"AA","Aruba"
-"AC","Antigua and Barbuda"
-"AF","Afghanistan"
-"AG","Algeria"
-"AJ","Azerbaijan, Republic of"
-"AL","Albania"
-"AM","Armenia, Republic of"
-"AO","Angola"
-"AR","Argentina"
-"AS","Australia"
-"AU","Austria"
-"AV","Anguilla"
-"BA","Bahrain"
-"BB","Barbados"
-"BC","Botswana"
-"BD","Bermuda"
-"BE","Belgium-Luxembourg"
-"BF","Bahamas, The"
-"BG","Bangladesh"
-"BH","Belize"
-"BK","Bosnia-Hercegovina"
-"BL","Bolivia"
-"BM","Burma"
-"BO","Belarus"
-"BP","Solomon Islands"
-"BR","Brazil"
-"BT","Bhutan"
-"BU","Bulgaria"
-"BX","Brunei"
-"BY","Burundi"
-"C1","Caribbean Basin"
-"CA","Canada"
-"CB","Cambodia"
-"CD","Chad"
-"CE","Sri Lanka"
-"CF","Congo (Brazzaville)"
-"CG","Congo, Democratic Rep of the"
-"CH","China, Peoples Republic of"
-"CI","Chile"
-"CJ","Cayman Islands"
-"CM","Cameroon"
-"CN","Comoros"
-"CO","Colombia"
-"CS","Costa Rica"
-"CT","Central African Republic"
-"CU","Cuba"
-"CV","Cape Verde"
-"CY","Cyprus"
-"CZ","Czechoslovakia"
-"DA","Denmark"
-"DJ","Djibouti Afars-Issas"
-"DM","Benin"
-"DO","Dominica"
-"DR","Dominican Republic"
-"E2","EU-15"
-"E3","EU-25"
-"E4","European Union"
-"EC","Ecuador"
-"EG","Egypt"
-"EI","Ireland"
-"EK","Equatorial Guinea"
-"EN","Estonia"
-"ER","Eritrea"
-"ES","El Salvador"
-"ET","Ethiopia"
-"EZ","Czech Republic"
-"FA","Falkland Islands (Islas Malvin"
-"FG","French Guiana"
-"FI","Finland"
-"FJ","Fiji"
-"FO","Faroe Islands"
-"FP","French Polynesia"
-"FR","France"
-"FT","Fr.Ter.Africa-Issas"
-"GA","Gambia, The"
-"GB","Gabon"
-"GC","German Democratic Republic"
-"GE","Germany, Federal Republic of"
-"GG","Georgia, Republic of"
-"GH","Ghana"
-"GI","Gibraltar"
-"GJ","Grenada"
-"GL","Greenland"
-"GM","Germany"
-"GN","Gilbert and Ellice Islands"
-"GP","Guadeloupe"
-"GQ","Guam"
-"GR","Greece"
-"GT","Guatemala"
-"GU","Guinea"
-"GY","Guyana"
-"GZ","Gaza Strip"
-"HA","Haiti"
-"HK","Hong Kong"
-"HO","Honduras"
-"HR","Croatia"
-"HU","Hungary"
-"IC","Iceland"
-"ID","Indonesia"
-"IN","India"
-"IO","British Ind. Ocean Territory"
-"IR","Iran"
-"IS","Israel"
-"IT","Italy"
-"IV","Cote d'Ivoire"
-"IZ","Iraq"
-"JA","Japan"
-"JM","Jamaica and Dep"
-"JO","Jordan"
-"KE","Kenya"
-"KG","Kyrgyzstan, Republic of"
-"KN","Korea, Democratic Peoples Rep"
-"KS","Korea, Republic of"
-"KU","Kuwait"
-"KZ","Kazakhstan, Republic of"
-"LA","Laos"
-"LE","Lebanon"
-"LG","Latvia"
-"LH","Lithuania"
-"LI","Liberia"
-"LO","Slovakia"
-"LT","Lesotho"
-"LU","Luxembourg"
-"LY","Libya"
-"MA","Madagascar"
-"MB","Martinique"
-"MC","Macau"
-"MD","Moldova, Republic of"
-"MG","Mongolia"
-"MH","Montserrat"
-"MI","Malawi"
-"MK","Macedonia (Skopje)"
-"ML","Mali"
-"MO","Morocco"
-"MP","Mauritius"
-"MQ","Midway Islands"
-"MR","Mauritania"
-"MT","Malta and Gozp"
-"MU","Oman"
-"MV","Maldive Islands"
-"MX","Mexico"
-"MY","Malaysia"
-"MZ","Mozambique"
-"NA","Netherlands Antilles"
-"NC","New Caledonia"
-"NG","Niger"
-"NH","Vanuatu/New Hebrides"
-"NI","Nigeria"
-"NL","Netherlands"
-"NO","Norway"
-"NP","Nepal"
-"NQ","Trust Territory of the Pacific"
-"NR","Nauru"
-"NS","Surinam"
-"NU","Nicaragua"
-"NZ","New Zealand"
-"OD","South Sudan"
-"PA","Paraguay"
-"PE","Peru"
-"PK","Pakistan"
-"PL","Poland"
-"PN","Panama"
-"PO","Portugal"
-"PP","Papua New Guinea"
-"PU","Guinea-Bissau"
-"QA","Qatar"
-"RB","Serbia"
-"RE","Reunion"
-"RH","Zimbabwe"
-"RO","Romania"
-"RP","Philippines"
-"RQ","Puerto Rico"
-"RS","Russian Federation"
-"RW","Rwanda"
-"S8","Belgium (without Luxembourg)"
-"SA","Saudi Arabia"
-"SB","St. Pierre and Miquelon"
-"SC","St. Kitts and Nevis"
-"SE","Seychelles"
-"SF","South Africa, Republic of"
-"SG","Senegal"
-"SH","St. Helena (Br W Afr)"
-"SI","Slovenia"
-"SL","Sierra Leone"
-"SN","Singapore"
-"SO","Somalia"
-"SP","Spain"
-"SR","Serbia and Montenegro"
-"ST","St. Lucia"
-"SU","Sudan"
-"SW","Sweden"
-"SY","Syria"
-"SZ","Switzerland"
-"T3","Africa, NEC"
-"T4","French Equatorial Africa"
-"T8","Fernando Po"
-"TC","United Arab Emirates"
-"TD","Trinidad and Tobago"
-"TH","Thailand"
-"TI","Tajikistan, Republic of"
-"TK","Turks and Caicos Islands"
-"TN","Tonga"
-"TO","Togo"
-"TP","Sao Tome and Principe"
-"TS","Tunisia"
-"TU","Turkey"
-"TW","Taiwan"
-"TX","Turkmenistan"
-"TZ","Tanzania, United Republic of"
-"UG","Uganda"
-"UK","United Kingdom"
-"UP","Ukraine"
-"UR","Union of Soviet Socialist Repu"
-"US","United States"
-"UV","Burkina"
-"UY","Uruguay"
-"UZ","Uzbekistan, Republic of"
-"V1","Vietnam, North"
-"V2","Vietnam, Republic of (South)"
-"VC","St. Vincent and the Grenadines"
-"VE","Venezuela"
-"VI","British Virgin Islands"
-"VM","Vietnam"
-"VO","Virgin Islands of the U.S."
-"W7","British West Pacific Islands"
-"WA","Namibia"
-"WE","West Bank"
-"WI","Western Sahara"
-"WQ","Wake Island"
-"WS","Western Samoa"
-"WZ","Swaziland"
-"X3","Canton and Enderbury Islands"
-"X6","French Ind. Ocean Territory"
-"X8","Southern Asia NEC"
-"Y1","Leeward-Windward Islands"
-"Y2","French West Indies"
-"Y3","Azores"
-"Y7","Canary Islands"
-"Y9","Madeira Islands"
-"YE","Yemen (Sanaa)"
-"YI","Yugoslavia (>01/2001)"
-"YM","Yemen"
-"YO","Yugoslavia"
-"YS","Yemen (Aden)"
-"YU","Yugoslavia (>05/92)"
-"Z5","Ryukyu Islands/Nansei Islands"
-"Z7","Other Pacific Islands, NEC"
-"ZA","Zambia"
+cn_code,cn_name--,OtherAA,ArubaAC,Antigua and BarbudaAF,AfghanistanAG,AlgeriaAJ,"Azerbaijan, Republic of"AD,AndorraAL,AlbaniaAM,ArmeniaAO,AngolaAR,ArgentinaAS,AustraliaAU,AustriaAZ,AzerbaijanAV,AnguillaBH,BahrainBB,BarbadosBC,BotswanaBD,BermudaBE,Belgium-LuxembourgBF,BahamasBG,BangladeshBH,BelizeBK,Bosnia-HercegovinaBL,BoliviaBN,Brunei DarussalamBM,BurmaBO,BelarusBP,Solomon IslandsBE,BelgiumBR,BrazilBA,Bosnia and HerzegovinaBT,BhutanBO,Bolivia (Plurinational State of)BU,BulgariaBX,BruneiBY,BurundiC1,Caribbean BasinCV,Cabo VerdeCA,CanadaCB,CambodiaCD,ChadCE,Sri LankaCG,CongoCG,"Congo, Democratic Rep of the"CH,ChinaCI,ChileCJ,Cayman IslandsKP,Democratic People's Republic of KoreaCM,CameroonCN,ComorosCD,Democratic Republic of the CongoCO,ColombiaCK,Cook IslandsCS,Costa RicaCT,Central African RepublicCU,CubaCV,Cape VerdeCY,CyprusCI,C?te d'IvoireCZ,CzechiaDA,DenmarkDJ,DjiboutiDM,BeninGM,GambiaDO,DominicaDR,Dominican RepublicE2,EU-15E3,EU-25E4,European UnionEC,EcuadorEG,EgyptEI,IrelandEK,Equatorial GuineaEN,EstoniaER,EritreaES,El SalvadorET,EthiopiaEZ,Czech RepublicFA,Falkland Islands (Islas MalvinFG,French GuianaFI,FinlandFJ,FijiFO,Faroe IslandsFP,French PolynesiaFR,FranceFT,Fr.Ter.Africa-IssasGA,"Gambia, The"GB,GabonDE,GermanyGE,GeorgiaGG,"Georgia, Republic of"GH,GhanaGI,GibraltarGJ,GrenadaGL,GreenlandGM,GermanyGN,Gilbert and Ellice IslandsGP,GuadeloupeGQ,GuamGR,GreeceGT,GuatemalaGU,GuineaGY,GuyanaGZ,Gaza StripHA,HaitiHK,Hong KongHO,HondurasHR,CroatiaHU,HungaryIC,IcelandID,IndonesiaIN,IndiaIO,British Ind. Ocean TerritoryIR,Iran (Islamic Republic of)IS,IsraelIT,ItalyIV,Cote d'IvoireIZ,IraqJA,JapanJM,JamaicaJO,JordanKE,KenyaKG,"Kyrgyzstan, Republic of"KN,"Korea, Democratic Peoples Rep"KS,"Korea, Republic of"KU,KuwaitKZ,"Kazakhstan, Republic of"LA,LaosLE,LebanonLG,LatviaLH,LithuaniaLI,LiberiaLO,SlovakiaLT,LesothoLU,LuxembourgLY,LibyaMAMG,MadagascarMB,MartiniqueMO,MacauMD,"Moldova, Republic of"MN,MongoliaMH,MontserratMI,MalawiFM,Micronesia (Federated States of)MK,Macedonia (Skopje)ML,MaliMA,MoroccoMP,MauritiusME,MontenegroMQ,Midway IslandsMR,MauritaniaMT,Malta and GozpMU,OmanMV,Maldive IslandsMM,MyanmarMC,MonacoMX,MexicoMY,MalaysiaMZ,MozambiqueNA,Netherlands AntillesNC,New CaledoniaNE,NigerNH,Vanuatu/New HebridesNG,NigeriaNL,NetherlandsNO,NorwayPS,Occupied Palestinian TerritoryNP,NepalNQ,Trust Territory of the PacificNR,NauruNS,SurinamNI,NicaraguaNZ,New ZealandNU,NiueOD,South SudanPW,PalauPA,ParaguayPE,PeruPK,PakistanPL,PolandMD,Republic of MoldovaKR,Republic of KoreaZA,South AfricaKZ,KazakhstanKI,KiribatiPN,PanamaPO,PortugalKG,KyrgyzstanPP,Papua New GuineaPU,Guinea-BissauLA,Lao People's Democratic RepublicQA,QatarRB,SerbiaRE,ReunionMV,MaldivesMH,Marshall IslandsMT,MaltaLI,LiechtensteinRH,ZimbabweRO,RomaniaRP,PhilippinesRQ,Puerto RicoRS,Russian FederationRW,RwandaS8,Belgium (without Luxembourg)SA,Saudi ArabiaSB,St. Pierre and MiquelonSC,St. Kitts and NevisSE,SeychellesSF,"South Africa, Republic of"SG,SenegalSH,St. Helena (Br W Afr)SI,SloveniaSL,Sierra LeoneSN,SingaporeSO,SomaliaSP,SpainSR,Serbia and MontenegroST,St. LuciaVA,Holy SeeSU,SudanSW,SwedenSY,Syrian Arab RepublicSZ,SwitzerlandT3,"Africa, NEC"T4,French Equatorial AfricaT8,Fernando PoTC,United Arab EmiratesTD,Trinidad and TobagoTH,ThailandMK,The former Yugoslav Republic of MacedoniaTI,TajikistanTK,Turks and Caicos IslandsTN,TongaTO,TogoTP,Sao Tome and PrincipeTS,TunisiaTU,TurkeyUZ,UzbekistanTW,TaiwanTX,TurkmenistanTZ,"Tanzania, United Republic of"UG,UgandaUK,United KingdomUP,UkraineRU,Russian FederationUS,United States of AmericaBF,Burkina FasoUY,UruguayUZ,"Uzbekistan, Republic of"V1,"Vietnam, North"V2,"Vietnam, Republic of (South)"VC,St. Vincent and the GrenadinesVE,Venezuela (Bolivarian Republic of)VI,British Virgin IslandsVM,Viet NamVO,Virgin Islands of the U.S.W7,British West Pacific IslandsWA,NamibiaWE,West BankWI,Western SaharaWQ,Wake IslandWS,Western SamoaWZ,SwazilandX3,Canton and Enderbury IslandsX6,French Ind. Ocean TerritoryX8,Southern Asia NECY1,Leeward-Windward IslandsY2,French West IndiesY3,AzoresY7,Canary IslandsY9,Madeira IslandsYE,Yemen (Sanaa)YI,Yugoslavia (>01/2001)YM,YemenYO,YugoslaviaYS,Yemen (Aden)YU,Yugoslavia (>05/92)Z5,Ryukyu Islands/Nansei IslandsZ7,"Other Pacific Islands, NEC"ZA,Zambia
