@@ -101,8 +101,8 @@ d3.json('/hdi-gdp-gii-data', function(error, response) {
       layout: 'vertical',
       align: 'right',
       verticalAlign: 'bottom',
-      x: -10,
-      y: -250,
+      x: -550,
+      y: -270,
       floating: true,
       backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
       borderWidth: 1
@@ -278,8 +278,8 @@ d3.json('/gdp-water-data', function(error, response) {
       layout: 'vertical',
       align: 'right',
       verticalAlign: 'bottom',
-      x: -10,
-      y: -250,
+      x: -550,
+      y: -270,
       floating: true,
       backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
       borderWidth: 1
