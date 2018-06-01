@@ -13,8 +13,6 @@ app = Flask(__name__)
 #################################################
 # Database Setup
 #################################################
-# db_uri = os.getenv("DATABASE_URI", "///../../data/data.sqlite")
-db_uri = "sqlite:///../../data/data.sqlite"
 db_uri = "sqlite:///../../data/Aquastat.sqlite"
 engine = create_engine(db_uri)
 
@@ -236,11 +234,12 @@ def map(defaultTopic):
 
     for year in years:
 
-        query_statement = "SELECT country,cn_code, `year bucket`," + defaultTopic + " \
-                        FROM Data \
-                        WHERE `mid year` = " + str(year) + "\
+        query_statement = "SELECT country,cn_code, year_bucket," + defaultTopic + " \
+                        FROM Aquastat \
+                        WHERE mid_year = " + str(year) + "\
                         AND cn_code IS NOT NULL AND "+ defaultTopic + " IS NOT NULL\
                         ORDER BY country"
+
 
         results = session.connection().execute(query_statement)
         
