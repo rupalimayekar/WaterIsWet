@@ -315,7 +315,7 @@ d3.json('/hdi-gdp-gii-data', function(error, response) {
     },
   
     title: {
-      text: 'GDP VS HDI'
+      text: 'GDP per Capita VS HDI'
     },
   
     subtitle: {
